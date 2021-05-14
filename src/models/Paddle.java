@@ -1,6 +1,7 @@
 package models;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Paddle extends Rectangle {
 
@@ -9,10 +10,28 @@ public class Paddle extends Rectangle {
 
     public Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
-        setXVelocity(initialSpeed);
+        setXVelocity(0);
     }
 
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            setXVelocity(initialSpeed);
+            move();
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            setXVelocity(-initialSpeed);
+            move();
+        }
+    }
 
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            setXVelocity(0);
+            move();
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            setXVelocity(0);
+            move();
+        }
+    }
 
     public void move() {
         x += xVelocity;

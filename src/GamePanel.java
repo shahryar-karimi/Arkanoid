@@ -18,19 +18,18 @@ public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
     private Score score;
-    private Timer timer;
     private int playerHeal;
 
 
     public GamePanel() {
         this.playerHeal = 3;
         this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
+        this.addKeyListener(new AL());
+        this.setPreferredSize(SCREEN_SIZE);
+        this.setBackground(Color.BLACK);
         newPaddle();
         newBall();
 
-        this.setPreferredSize(SCREEN_SIZE);
-
-        this.timer = new Timer(10, new AL());
     }
 
     private void newPaddle() {
@@ -41,38 +40,40 @@ public class GamePanel extends JPanel {
         ball = new Ball((PANEL_WIDTH - BALL_DIAMETER) / 2, PANEL_HEIGHT - PADDLE_HEIGHT - BALL_DIAMETER, BALL_DIAMETER, BALL_DIAMETER);
     }
 
-    private void move() {
+    public void move() {
         ball.move();
         paddle.move();
     }
 
     @Override
     public void paint(Graphics g) {
+        draw(g);
+    }
+
+    public void draw(Graphics g) {
         paddle.draw(g);
         ball.draw(g);
         score.draw(g);
     }
 
-    public static class AL implements ActionListener, KeyListener {
+    public void checkCollision() {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    }
 
-        }
+    public class AL implements KeyListener {
 
         @Override
         public void keyTyped(KeyEvent e) {
-
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-
+            paddle.keyPressed(e);
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
-
+            paddle.keyReleased(e);
         }
     }
 }

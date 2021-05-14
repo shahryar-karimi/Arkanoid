@@ -32,4 +32,6 @@ public abstract class Cell extends Rectangle {
     public void setDead(boolean dead) {
         isDead = dead;
     }
+
+    public abstract void draw(Graphics g);
 }
