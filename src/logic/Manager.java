@@ -14,7 +14,6 @@ public class Manager {
 
     public Manager() {
         players = new ArrayList<>();
-        loginFrame = new LoginFrame(this);
     }
 
     public ArrayList<Player> getPlayers() {

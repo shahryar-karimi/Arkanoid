@@ -19,8 +19,8 @@ public class Save {
             for (Player player : manager.getPlayers()) {
                 fileWriter.write("{\n");
 
-                fileWriter.write(space(1) + "user name = " + player.getUserName() + "\n");
-                fileWriter.write(space(1) + "Password = " + player.getPassword() + "\n");
+                fileWriter.write(space(1) + "userName = " + player.getUserName() + "\n");
+                fileWriter.write(space(1) + "password = " + player.getPassword() + "\n");
                 fileWriter.write(space(1) + "scores = {\n");
                 for (Score score : player.getScores()) {
                     fileWriter.write(space(2) + score.getScore() + "\n");
