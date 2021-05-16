@@ -20,6 +20,6 @@ public class Score extends Rectangle {
 
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.drawString(String.valueOf(getScore()), width - 30, height - 20);
+        g.drawString("Score: " + getScore(), width - 70, height - 20);
     }
 }

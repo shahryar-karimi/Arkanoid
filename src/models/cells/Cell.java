@@ -5,6 +5,7 @@ import java.awt.*;
 public abstract class Cell extends Rectangle {
     protected int heal;
     protected boolean isDead;
+    protected int score;
 
     public Cell(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -33,5 +34,17 @@ public abstract class Cell extends Rectangle {
         isDead = dead;
     }
 
-    public abstract void draw(Graphics g);
+    public void draw(Graphics g) {
+        g.fillRect(x, y, width, height);
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y, width, height);
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

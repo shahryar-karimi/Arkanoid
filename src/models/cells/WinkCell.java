@@ -8,12 +8,14 @@ public class WinkCell extends Cell {
     public WinkCell(int x, int y, int width, int height) {
         super(x, y, width, height);
         this.isWink = false;
+        this.score = 50;
     }
 
     @Override
     public void draw(Graphics g) {
-        if (isWink) g.setColor(Color.LIGHT_GRAY);
-        else g.setColor(Color.BLACK);
+        if (isWink) g.setColor(Color.BLACK);
+        else g.setColor(Color.LIGHT_GRAY);
+        super.draw(g);
     }
 
     public void setWink(boolean wink) {

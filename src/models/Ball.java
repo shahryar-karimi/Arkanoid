@@ -26,6 +26,14 @@ public class Ball extends Rectangle {
         this.yVelocity = yVelocity;
     }
 
+    public int getXVelocity() {
+        return xVelocity;
+    }
+
+    public int getYVelocity() {
+        return yVelocity;
+    }
+
     public void move() {
         x += xVelocity;
         y += yVelocity;

@@ -10,8 +10,9 @@ public class GlassyCell extends Cell {
 
     @Override
     public void draw(Graphics g) {
+        this.score = 10;
         g.setColor(Color.CYAN);
-        g.fillRect(x, y, width, height);
+        super.draw(g);
     }
 
 
