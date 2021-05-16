@@ -4,10 +4,12 @@ import java.awt.*;
 
 public class Score extends Rectangle {
     private int score;
+    private int heal;
 
     public Score(int x, int y, int width, int height, int score) {
         super(x, y, width, height);
         this.score = score;
+        this.heal = 3;
     }
 
     public int getScore() {
@@ -20,6 +22,11 @@ public class Score extends Rectangle {
 
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.drawString("Score: " + getScore(), width - 70, height - 20);
+        g.drawString("Heal: " + heal + "     Score: " + score, width - 130, height - 20);
+        g.drawLine(0, 9 * height / 10, width, 9 * height / 10);
+    }
+
+    public void setHeal(int playerHeal) {
+        this.heal = playerHeal;
     }
 }

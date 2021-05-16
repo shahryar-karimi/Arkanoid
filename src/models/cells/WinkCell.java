@@ -18,11 +18,11 @@ public class WinkCell extends Cell {
         super.draw(g);
     }
 
-    public void setWink(boolean wink) {
-        isWink = wink;
-    }
-
     public boolean isWink() {
         return isWink;
+    }
+
+    public void wink() {
+        isWink = !isWink;
     }
 }

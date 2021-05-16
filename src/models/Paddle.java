@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 public class Paddle extends Rectangle {
 
     private int xVelocity;
-    private int initialSpeed = 1;
+    private int initialSpeed = 3;
 
     public Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -15,10 +15,10 @@ public class Paddle extends Rectangle {
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            setXVelocity(initialSpeed);
+            setXVelocity(xVelocity + initialSpeed);
             move();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            setXVelocity(-initialSpeed);
+            setXVelocity(xVelocity - initialSpeed);
             move();
         }
     }
