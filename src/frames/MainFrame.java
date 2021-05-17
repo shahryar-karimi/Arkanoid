@@ -2,8 +2,8 @@ package frames;
 
 import logic.Manager;
 import logic.Player;
-import panels.ButtonPanel;
-import panels.GamePanel;
+import panels.mainFramePanel.ButtonPanel;
+import panels.mainFramePanel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,6 @@ public class MainFrame extends JFrame implements ActionListener {
     private GamePanel gamePanel;
     private ButtonPanel buttonPanel;
     private Timer gameLoopTimer;
-    private int velocityCounter = 1;
     private int winkCounter = 0;
     private long addRowCounter = 0;
     private Manager manager;
@@ -45,10 +44,12 @@ public class MainFrame extends JFrame implements ActionListener {
         buttonPanel.getPower().addActionListener(e -> {
             if (buttonPanel.getPower().getText().equals("Pause")) {
                 buttonPanel.getPower().setText("Play");
+                buttonPanel.getRestart().setEnabled(true);
                 gameLoopTimer.stop();
             } else {
                 buttonPanel.getPower().setText("Pause");
                 gameLoopTimer.start();
+                buttonPanel.getRestart().setEnabled(false);
             }
         });
     }
@@ -59,11 +60,11 @@ public class MainFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (gamePanel.isGameOver()) {
+            restart();
+        }
         gamePanel.move();
         gamePanel.checkCollision();
-        if (gamePanel.getBall().intersects(gamePanel.getPaddle())) {
-
-        }
         winkCounter++;
         if (winkCounter == 20) {
             winkCounter = 0;
@@ -81,11 +82,16 @@ public class MainFrame extends JFrame implements ActionListener {
         gamePanel.repaint();
     }
 
+    public void restart() {
+        gameLoopTimer.stop();
+        buttonPanel.getPower().setText("Play");
+        gamePanel.restart();
+    }
+
     public class AL implements KeyListener {
 
         @Override
-        public void keyTyped(KeyEvent e) {
-        }
+        public void keyTyped(KeyEvent e) {}
 
         @Override
         public void keyPressed(KeyEvent e) {

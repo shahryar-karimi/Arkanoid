@@ -1,4 +1,4 @@
-package panels;
+package panels.mainFramePanel;
 
 import logic.Manager;
 import logic.Player;
@@ -25,22 +25,19 @@ public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
     private Player player;
-    private int playerHeal;
     private ArrayList<Cell> cells;
     private Manager manager;
+    private boolean isGameOver;
 
 
     public GamePanel(Player player, Manager manager) {
+        this.isGameOver = false;
         this.manager = manager;
         this.player = player;
-        this.playerHeal = 3;
         this.player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
         this.setPreferredSize(SCREEN_SIZE);
         this.setBackground(Color.BLACK);
-        newPaddle();
-        newBall();
-        newCells();
-
+        reset();
     }
 
     private void newPaddle() {
@@ -125,9 +122,8 @@ public class GamePanel extends JPanel {
         if (ball.x <= 0 || ball.x >= PANEL_WIDTH - BALL_DIAMETER) ball.setXVelocity(-ball.getXVelocity());
         if (ball.y <= 0) ball.setYVelocity(-ball.getYVelocity());
         if (ball.y >= PANEL_HEIGHT - BALL_DIAMETER) {
-            playerHeal--;
-            player.getScore().setHeal(playerHeal);
-            if (playerHeal > 0) {
+            player.getScore().loseHeal();
+            if (player.getScore().getHeal() > 0) {
                 newPaddle();
                 newBall();
             } else {
@@ -149,14 +145,19 @@ public class GamePanel extends JPanel {
     }
 
     private void gameOver(String message) {
+        this.isGameOver = true;
         JOptionPane.showMessageDialog(null, message, "Game result", JOptionPane.INFORMATION_MESSAGE);
         player.addScore();
-        newBall();
-        newPaddle();
-        newCells();
+        reset();
         player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+        manager.save();
+    }
 
-        manager.logout();
+    public void restart() {
+        this.isGameOver = false;
+        reset();
+        player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+        repaint();
     }
 
     public Paddle getPaddle() {
@@ -173,5 +174,15 @@ public class GamePanel extends JPanel {
                 ((WinkCell) cell).wink();
             }
         }
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+    private void reset() {
+        newPaddle();
+        newCells();
+        newBall();
     }
 }

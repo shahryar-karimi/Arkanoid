@@ -17,12 +17,17 @@ public class Player {
         this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
     }
 
+    public Player() {
+
+    }
+
     public ArrayList<Score> getScores() {
         return scores;
     }
 
-    public void setScores(ArrayList<Score> scores) {
+    public Player setScores(ArrayList<Score> scores) {
         this.scores = scores;
+        return this;
     }
 
     public void addScore() {
@@ -45,11 +50,13 @@ public class Player {
         return password;
     }
 
-    public void setPassword(String password) {
+    public Player setPassword(String password) {
         this.password = password;
+        return this;
     }
 
-    public void setUserName(String userName) {
+    public Player setUserName(String userName) {
         this.userName = userName;
+        return this;
     }
 }

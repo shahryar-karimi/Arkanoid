@@ -1,0 +1,18 @@
+{
+    userName = asd
+    password = asd
+    scores = [
+        425
+        25
+        1085
+    ]
+}
+{
+    userName = shahryar
+    password = asd
+    scores = [
+        4125
+        25
+        1085
+    ]
+}

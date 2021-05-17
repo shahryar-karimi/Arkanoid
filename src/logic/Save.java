@@ -21,11 +21,11 @@ public class Save {
 
                 fileWriter.write(space(1) + "userName = " + player.getUserName() + "\n");
                 fileWriter.write(space(1) + "password = " + player.getPassword() + "\n");
-                fileWriter.write(space(1) + "scores = {\n");
+                fileWriter.write(space(1) + "scores = [\n");
                 for (Score score : player.getScores()) {
                     fileWriter.write(space(2) + score.getScore() + "\n");
                 }
-                fileWriter.write(space(1) + "}\n");
+                fileWriter.write(space(1) + "]\n");
 
                 fileWriter.write("}\n");
             }

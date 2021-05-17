@@ -11,6 +11,7 @@ public class Manager {
     private ArrayList<Player> players;
     private MainFrame mainFrame;
     private LoginFrame loginFrame;
+    private ScoreBoardFrame scoreBoardFrame;
 
     public Manager() {
         players = new ArrayList<>();
@@ -40,6 +41,7 @@ public class Manager {
     }
 
     public void logout() {
+        save();
         if (mainFrame != null) mainFrame.dispose();
         loginFrame = new LoginFrame(this);
     }
@@ -51,5 +53,26 @@ public class Manager {
 
     public void save() {
         Save.save(this);
+    }
+
+    public void restart() {
+        mainFrame.restart();
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public void setLoginFrame(LoginFrame loginFrame) {
+        this.loginFrame = loginFrame;
+    }
+
+    public void start() {
+        setLoginFrame(new LoginFrame(this));
+    }
+
+    public void scoreBoard() {
+        if (mainFrame != null) mainFrame.dispose();
+        scoreBoardFrame = new ScoreBoardFrame(this);
     }
 }

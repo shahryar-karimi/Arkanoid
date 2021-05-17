@@ -29,4 +29,12 @@ public class Score extends Rectangle {
     public void setHeal(int playerHeal) {
         this.heal = playerHeal;
     }
+
+    public int getHeal() {
+        return heal;
+    }
+
+    public void loseHeal() {
+        if (heal > 0) heal--;
+    }
 }
