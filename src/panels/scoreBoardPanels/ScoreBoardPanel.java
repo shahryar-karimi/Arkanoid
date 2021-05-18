@@ -1,4 +1,4 @@
-package panels;
+package panels.scoreBoardPanels;
 
 import logic.Manager;
 import logic.Player;
@@ -10,9 +10,8 @@ import java.util.ArrayList;
 
 public class ScoreBoardPanel extends JPanel {
 
-    private static final int PANEL_WIDTH = 500;
+    private static final int PANEL_WIDTH = 400;
     private static final int PANEL_HEIGHT = 500;
-    private static final Dimension SCREEN_SIZE = new Dimension(PANEL_WIDTH, PANEL_HEIGHT);
     private Manager manager;
     private ArrayList<String> scores;
     private JTextPane textPane;
@@ -25,6 +24,7 @@ public class ScoreBoardPanel extends JPanel {
         this.setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         this.setBackground(new Color(12, 23, 45));
         this.setOpaque(true);
+        this.setLayout(new FlowLayout());
 
         setUpTextPane();
     }

@@ -1,6 +1,7 @@
-package panels.mainFramePanel;
+package panels.mainFramePanels;
 
 import logic.Manager;
+import logic.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,17 +19,19 @@ public class ButtonPanel extends JPanel {
     private JButton save;
     private JButton exit;
     private Manager manager;
+    private Player player;
 
-    public ButtonPanel(Manager manager) {
+    public ButtonPanel(Player player, Manager manager) {
+        this.player = player;
         this.manager = manager;
         this.setBorder(null);
         this.setPreferredSize(SCREEN_SIZE);
         this.setBackground(Color.BLUE);
         this.setLayout(null);
-        init();
+        init(player);
     }
 
-    private void init() {
+    private void init(Player player) {
         power = new JButton("Play");
         power.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         power.setFocusable(false);
@@ -36,7 +39,7 @@ public class ButtonPanel extends JPanel {
         scoreBoardB = new JButton("Score Board");
         scoreBoardB.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 3 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         scoreBoardB.setFocusable(false);
-        scoreBoardB.addActionListener(e -> manager.scoreBoard());
+        scoreBoardB.addActionListener(e -> manager.scoreBoardIn(player));
 
         back = new JButton("Back");
         back.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 5 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);

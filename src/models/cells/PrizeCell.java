@@ -1,11 +1,25 @@
 package models.cells;
 
+import models.prizes.Prize;
+
 import java.awt.*;
 
 public class PrizeCell extends Cell{
-    public PrizeCell(int x, int y, int width, int height) {
+
+    private Prize prize;
+
+    public PrizeCell(int x, int y, int width, int height, Prize prize) {
         super(x, y, width, height);
         this.score = 10;
+        this.prize = prize;
+    }
+
+    public Prize getPrize() {
+        return prize;
+    }
+
+    public void setPrize(Prize prize) {
+        this.prize = prize;
     }
 
     @Override

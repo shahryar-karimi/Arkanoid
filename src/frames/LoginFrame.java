@@ -4,14 +4,12 @@ import logic.Manager;
 import panels.LoginPanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class LoginFrame extends JFrame {
     private LoginPanel loginPanel;
-    private Manager manager;
+
 
     public LoginFrame(Manager manager) {
-        this.manager = manager;
         loginPanel = new LoginPanel(manager);
 
         this.setSize(350, 350);

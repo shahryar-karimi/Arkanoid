@@ -71,8 +71,13 @@ public class Manager {
         setLoginFrame(new LoginFrame(this));
     }
 
-    public void scoreBoard() {
+    public void scoreBoardIn(Player player) {
         if (mainFrame != null) mainFrame.dispose();
-        scoreBoardFrame = new ScoreBoardFrame(this);
+        scoreBoardFrame = new ScoreBoardFrame(player, this);
+    }
+
+    public void scoreBoardOut (Player player) {
+        if (scoreBoardFrame != null) scoreBoardFrame.dispose();
+        mainFrame = new MainFrame(player, this);
     }
 }

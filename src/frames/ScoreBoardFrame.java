@@ -1,18 +1,21 @@
 package frames;
 
 import logic.Manager;
-import panels.ScoreBoardPanel;
+import logic.Player;
+import panels.scoreBoardPanels.ButtonPanel;
+import panels.scoreBoardPanels.ScoreBoardPanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ScoreBoardFrame extends JFrame {
 
     private ScoreBoardPanel scoreBoardPanel;
-    private Manager manager;
+    private ButtonPanel buttonPanel;
 
-    public ScoreBoardFrame(Manager manager) {
-        this.manager = manager;
+    public ScoreBoardFrame(Player player, Manager manager) {
         scoreBoardPanel = new ScoreBoardPanel(manager);
+        buttonPanel = new ButtonPanel(player, manager);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -20,7 +23,9 @@ public class ScoreBoardFrame extends JFrame {
         this.setSize(500, 500);
 
         this.add(scoreBoardPanel);
-
+        this.add(buttonPanel);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((dim.width - this.getWidth()) / 2, (dim.height - this.getHeight()) / 2);
         this.setVisible(true);
     }
 }
