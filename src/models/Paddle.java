@@ -5,24 +5,29 @@ import java.awt.event.KeyEvent;
 
 public class Paddle extends Rectangle {
 
+    private static final int INITIAL_SPEED = 3;
+
     private int xVelocity;
-    private int initialSpeed = 3;
     private boolean isNormal;
 
-    public Paddle(int x, int y, int width, int height) {
+    public Paddle(int x, int y, int width, int height, int xVelocity, boolean isNormal) {
         super(x, y, width, height);
-        setXVelocity(0);
-        this.isNormal = true;
+        this.xVelocity = xVelocity;
+        this.isNormal = isNormal;
+    }
+
+    public Paddle(int x, int y, int width, int height) {
+        this(x, y, width, height, 0, true);
     }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (isNormal) setXVelocity(xVelocity + initialSpeed);
-            else setXVelocity(xVelocity - initialSpeed);
+            if (isNormal) setXVelocity(xVelocity + INITIAL_SPEED);
+            else setXVelocity(xVelocity - INITIAL_SPEED);
             move();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (isNormal) setXVelocity(xVelocity - initialSpeed);
-            else setXVelocity(xVelocity + initialSpeed);
+            if (isNormal) setXVelocity(xVelocity - INITIAL_SPEED);
+            else setXVelocity(xVelocity + INITIAL_SPEED);
             move();
         }
     }
@@ -56,5 +61,9 @@ public class Paddle extends Rectangle {
     public void draw(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(x, y, width, height);
+    }
+
+    public int getXVelocity() {
+        return xVelocity;
     }
 }

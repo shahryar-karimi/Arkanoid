@@ -5,6 +5,12 @@ import java.awt.*;
 public class WinkCell extends Cell {
     private boolean isWink;
 
+    public WinkCell(int x, int y, int width, int height, int heal, boolean isWink) {
+        this(x, y, width, height);
+        this.heal = heal;
+        this.isWink = isWink;
+    }
+
     public WinkCell(int x, int y, int width, int height) {
         super(x, y, width, height);
         this.isWink = false;

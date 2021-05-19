@@ -4,6 +4,11 @@ import java.awt.*;
 
 public class WoodenCell extends Cell{
 
+    public WoodenCell(int x, int y, int width, int height, int heal) {
+        this(x, y, width, height);
+        this.heal = heal;
+    }
+
     public WoodenCell(int x, int y, int width, int height) {
         super(x, y, width, height);
         this.heal = 2;

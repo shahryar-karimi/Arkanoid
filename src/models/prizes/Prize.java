@@ -6,8 +6,8 @@ import java.awt.*;
 
 public abstract class Prize extends Rectangle {
 
-    private static final int yVelocity = 3;
-    private int time = 20_000;
+    private static final int Y_VELOCITY = 3;
+    protected int time = 20_000;
 
     public Prize(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -20,7 +20,7 @@ public abstract class Prize extends Rectangle {
     public abstract void draw(Graphics g);
 
     public void move() {
-        y += yVelocity;
+        y += Y_VELOCITY;
     }
 
     public int getTime() {

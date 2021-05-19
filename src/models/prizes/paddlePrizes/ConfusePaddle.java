@@ -6,6 +6,11 @@ import java.awt.*;
 
 public class ConfusePaddle extends PaddlePrize{
 
+    public ConfusePaddle(int x, int y, int width, int height, int time) {
+        this(x, y, width, height);
+        this.time = time;
+    }
+
     public ConfusePaddle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }

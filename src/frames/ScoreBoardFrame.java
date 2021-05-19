@@ -1,7 +1,6 @@
 package frames;
 
 import logic.Manager;
-import logic.Player;
 import panels.scoreBoardPanels.ButtonPanel;
 import panels.scoreBoardPanels.ScoreBoardPanel;
 
@@ -13,9 +12,9 @@ public class ScoreBoardFrame extends JFrame {
     private ScoreBoardPanel scoreBoardPanel;
     private ButtonPanel buttonPanel;
 
-    public ScoreBoardFrame(Player player, Manager manager) {
+    public ScoreBoardFrame(String userName, Manager manager) {
         scoreBoardPanel = new ScoreBoardPanel(manager);
-        buttonPanel = new ButtonPanel(player, manager);
+        buttonPanel = new ButtonPanel(userName, manager);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);

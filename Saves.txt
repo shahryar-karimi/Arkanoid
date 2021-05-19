@@ -1,24 +1,192 @@
 {
     userName = asd
     password = asd
-    scores = [
+    token scores = [
+        25
         425
-        25
-        1085
-        2780
-        2865
-        1630
-        1605
-        3435
-        1465
     ]
-}
-{
-    userName = shahryar
-    password = asd
-    scores = [
-        4125
-        25
-        1085
+    paused game = [
+        "name" = [
+            TimeLoop = "mainFrame.timeLoop"
+            Game panel = [
+                Paddle = [
+                    x = "paddle.x"
+                    y = "paddle.y"
+                    width = "paddle.width"
+                    height = "paddle.height"
+                    xVelocity = "paddle.xVelocity"
+                    isNormal = "paddle.isNormal"
+                ]
+                Balls = [
+                    [
+                       x = "ball.x"
+                       y = "ball.y"
+                       width = "ball.width"
+                       height = "ball.height"
+                       xVelocity = "ball.xVelocity"
+                       yVelocity = "ball.yVelocity"
+                       isFire = "ball.isFire"
+                       velocityRatio = "ball.velocityRatio"
+                    ]
+                    [
+                       x = "ball.x"
+                       y = "ball.y"
+                       width = "ball.width"
+                       height = "ball.height"
+                       xVelocity = "ball.xVelocity"
+                       yVelocity = "ball.yVelocity"
+                       isFire = "ball.isFire"
+                       velocityRatio = "ball.velocityRatio"
+                    ]
+                ]
+                Cells = [
+                    "Material" = [
+                        x = "cell.x"
+                        y = "cell.y"
+                        width = "cell.width"
+                        height = "cell.height"
+                        heal = "cell.heal"
+                        "null" || "prize" || "is wink"
+                    ]
+                    "Material" = [
+                        x = "cell.x"
+                        y = "cell.y"
+                        width = "cell.width"
+                        height = "cell.height"
+                        heal = "cell.heal"
+                        "null" || "prize" || "is wink"
+                    ]
+                ]
+                Prizes = [
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                ]
+                TokenPrize = [
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                ]
+                UserName = "player.userName"
+            ]
+            Button panel = [
+                UserName = "player.userName"
+            ]
+            WinkCounter = "mainFrame.winkCounter"
+            AddRowCounter = "mainFrame.addRowCounter"
+        ]
+        "name" = [
+            TimeLoop = "mainFrame.timeLoop"
+            Game panel = [
+                Paddle = [
+                    x = "paddle.x"
+                    y = "paddle.y"
+                    width = "paddle.width"
+                    height = "paddle.height"
+                    xVelocity = "paddle.xVelocity"
+                    isNormal = "paddle.isNormal"
+                ]
+                Balls = [
+                    [
+                       x = "ball.x"
+                       y = "ball.y"
+                       width = "ball.width"
+                       height = "ball.height"
+                       xVelocity = "ball.xVelocity"
+                       yVelocity = "ball.yVelocity"
+                       isFire = "ball.isFire"
+                       velocityRatio = "ball.velocityRatio"
+                    ]
+                    [
+                       x = "ball.x"
+                       y = "ball.y"
+                       width = "ball.width"
+                       height = "ball.height"
+                       xVelocity = "ball.xVelocity"
+                       yVelocity = "ball.yVelocity"
+                       isFire = "ball.isFire"
+                       velocityRatio = "ball.velocityRatio"
+                    ]
+                ]
+                Cells = [
+                    "Material" = [
+                        x = "cell.x"
+                        y = "cell.y"
+                        width = "cell.width"
+                        height = "cell.height"
+                        heal = "cell.heal"
+                        "null" || "prize" || "is wink"
+                    ]
+                    "Material" = [
+                        x = "cell.x"
+                        y = "cell.y"
+                        width = "cell.width"
+                        height = "cell.height"
+                        heal = "cell.heal"
+                        "null" || "prize" || "is wink"
+                    ]
+                ]
+                Prizes = [
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                ]
+                TokenPrize = [
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                    "Material" = [
+                        x = "prize.x"
+                        y = "prize.y"
+                        width = "prize.width"
+                        height = "prize.height"
+                        time = "prize.time"
+                    ]
+                ]
+                UserName = "player.userName"
+            ]
+            Button panel = [
+                UserName = "player.userName"
+            ]
+            WinkCounter = "mainFrame.winkCounter"
+            AddRowCounter = "mainFrame.addRowCounter"
+        ]
     ]
 }

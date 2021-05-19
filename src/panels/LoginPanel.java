@@ -66,7 +66,7 @@ public class LoginPanel extends JPanel implements ActionListener {
                 player = manager.search(userName);
             }
             showInformationMessageDialog(player.getUserName() + " Logged in!");
-            manager.login(player);
+            manager.login(player.getUserName());
         }
     }
 

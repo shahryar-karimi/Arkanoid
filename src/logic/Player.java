@@ -1,45 +1,48 @@
 package logic;
 
+import frames.MainFrame;
 import models.Score;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player {
     private String userName;
     private String password;
     private Score score;
-    private ArrayList<Score> scores;
+    private ArrayList<Score> tokenScores;
+    private HashMap<String, MainFrame> pausesGames;
 
     public Player(String userName, String password, int PANEL_WIDTH, int PANEL_HEIGHT) {
         this.userName = userName;
         this.password = password;
-        this.scores = new ArrayList<>();
+        this.tokenScores = new ArrayList<>();
+        this.pausesGames = new HashMap<>();
         this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
     }
 
-    public Player() {
+    public Player() {}
 
+    public ArrayList<Score> getTokenScores() {
+        return tokenScores;
     }
 
-    public ArrayList<Score> getScores() {
-        return scores;
-    }
-
-    public Player setScores(ArrayList<Score> scores) {
-        this.scores = scores;
+    public Player setTokenScores(ArrayList<Score> tokenScores) {
+        this.tokenScores = tokenScores;
         return this;
     }
 
     public void addScore() {
-        scores.add(score);
+        tokenScores.add(score);
     }
 
     public Score getScore() {
         return score;
     }
 
-    public void setScore(Score score) {
+    public Player setScore(Score score) {
         this.score = score;
+        return this;
     }
 
     public String getUserName() {
@@ -58,5 +61,17 @@ public class Player {
     public Player setUserName(String userName) {
         this.userName = userName;
         return this;
+    }
+
+    public void addPausesGame(String name, MainFrame mainFrame) {
+        this.pausesGames.put(name, mainFrame);
+    }
+
+    public HashMap<String, MainFrame> getPausesGames() {
+        return pausesGames;
+    }
+
+    public void setPausesGames(HashMap<String, MainFrame> pausesGames) {
+        this.pausesGames = pausesGames;
     }
 }

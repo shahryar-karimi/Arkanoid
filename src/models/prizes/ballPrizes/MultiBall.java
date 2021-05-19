@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 public class MultiBall extends BallPrize{
 
-    private Ball ball1;
-    private Ball ball2;
+    public MultiBall(int x, int y, int width, int height, int time) {
+        this(x, y, width, height);
+        this.time = time;
+    }
 
     public MultiBall(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -20,15 +22,15 @@ public class MultiBall extends BallPrize{
 
     @Override
     public void onPrize(ArrayList<Ball> balls) {
-        ball1 = new Ball(1,
+        Ball ball1 = new Ball(1,
                 GamePanel.getPanelHeight() - GamePanel.getBallDiameter(),
                 GamePanel.getBallDiameter(),
                 GamePanel.getBallDiameter());
-        ball2 = new Ball(GamePanel.getPanelWidth() - GamePanel.getBallDiameter(),
+        Ball ball2 = new Ball(GamePanel.getPanelWidth() - GamePanel.getBallDiameter(),
                 GamePanel.getPanelHeight() - GamePanel.getBallDiameter(),
                 GamePanel.getBallDiameter(),
                 GamePanel.getBallDiameter());
-        ball1.setInitialSpeedX(4);
+        ball1.setXVelocity(4);
 
         balls.add(ball1);
         balls.add(ball2);

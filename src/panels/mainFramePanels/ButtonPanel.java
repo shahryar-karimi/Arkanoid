@@ -12,6 +12,7 @@ public class ButtonPanel extends JPanel {
     private static final int BUTTON_WIDTH = 120;
     private static final int BUTTON_HEIGHT = 40;
     private static final Dimension SCREEN_SIZE = new Dimension(PANEL_WIDTH, PANEL_HEIGHT);
+
     private JButton power;
     private JButton restart;
     private JButton scoreBoardB;
@@ -19,10 +20,11 @@ public class ButtonPanel extends JPanel {
     private JButton save;
     private JButton exit;
     private Manager manager;
+    private String userName;
     private Player player;
 
-    public ButtonPanel(Player player, Manager manager) {
-        this.player = player;
+    public ButtonPanel(String userName, Manager manager) {
+        this.player = manager.search(userName);
         this.manager = manager;
         this.setBorder(null);
         this.setPreferredSize(SCREEN_SIZE);
@@ -39,17 +41,17 @@ public class ButtonPanel extends JPanel {
         scoreBoardB = new JButton("Score Board");
         scoreBoardB.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 3 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         scoreBoardB.setFocusable(false);
-        scoreBoardB.addActionListener(e -> manager.scoreBoardIn(player));
+        scoreBoardB.addActionListener(e -> manager.scoreBoardIn(player.getUserName()));
 
         back = new JButton("Back");
         back.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 5 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         back.setFocusable(false);
         back.addActionListener(e -> manager.logout());
 
-        save = new JButton("Save");
+        save = new JButton("SavePlayers");
         save.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 7 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         save.setFocusable(false);
-        save.addActionListener(e -> manager.save());
+        save.addActionListener(e -> manager.savePosition());
 
         exit = new JButton("Exit");
         exit.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 9 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -93,5 +95,17 @@ public class ButtonPanel extends JPanel {
 
     public JButton getExit() {
         return exit;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

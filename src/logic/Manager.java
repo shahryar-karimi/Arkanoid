@@ -2,6 +2,7 @@ package logic;
 
 import frames.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Manager {
@@ -9,6 +10,7 @@ public class Manager {
     private static final int PANEL_HEIGHT = 509;
 
     private ArrayList<Player> players;
+
     private MainFrame mainFrame;
     private LoginFrame loginFrame;
     private ScoreBoardFrame scoreBoardFrame;
@@ -35,24 +37,30 @@ public class Manager {
         return null;
     }
 
-    public void login(Player player) {
+    public void login(String userName) {
         if (loginFrame != null) loginFrame.dispose();
-        mainFrame = new MainFrame(player, this);
+        mainFrame = new MainFrame(userName, this);
     }
 
     public void logout() {
-        save();
+        savePlayers();
         if (mainFrame != null) mainFrame.dispose();
         loginFrame = new LoginFrame(this);
     }
 
     public void exit() {
-        save();
+        savePlayers();
         System.exit(0);
     }
 
-    public void save() {
-        Save.save(this);
+    public void savePlayers() {
+        SavePlayers.save(this);
+    }
+
+    public void savePosition() {
+        String name = JOptionPane.showInputDialog(null, "Enter save name:", "Get name", JOptionPane.QUESTION_MESSAGE);
+        while (name == null) name = JOptionPane.showInputDialog(null, "Enter save name:", "Get name", JOptionPane.QUESTION_MESSAGE);
+        mainFrame.getGamePanel().getPlayer().addPausesGame(name, mainFrame);
     }
 
     public void restart() {
@@ -71,13 +79,13 @@ public class Manager {
         setLoginFrame(new LoginFrame(this));
     }
 
-    public void scoreBoardIn(Player player) {
+    public void scoreBoardIn(String userName) {
         if (mainFrame != null) mainFrame.dispose();
-        scoreBoardFrame = new ScoreBoardFrame(player, this);
+        scoreBoardFrame = new ScoreBoardFrame(userName, this);
     }
 
-    public void scoreBoardOut (Player player) {
+    public void scoreBoardOut (String userName) {
         if (scoreBoardFrame != null) scoreBoardFrame.dispose();
-        mainFrame = new MainFrame(player, this);
+        mainFrame = new MainFrame(userName, this);
     }
 }

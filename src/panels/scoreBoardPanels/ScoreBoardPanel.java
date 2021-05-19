@@ -49,7 +49,7 @@ public class ScoreBoardPanel extends JPanel {
 
     private void addScore() {
         for (Player player : manager.getPlayers()) {
-            for (Score score : player.getScores()) {
+            for (Score score : player.getTokenScores()) {
                 scores.add(player.getUserName() + " : " + score.getScore());
             }
         }

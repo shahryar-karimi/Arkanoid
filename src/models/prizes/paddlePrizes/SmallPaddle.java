@@ -5,6 +5,12 @@ import models.Paddle;
 import java.awt.*;
 
 public class SmallPaddle extends PaddlePrize {
+
+    public SmallPaddle(int x, int y, int width, int height, int time) {
+        this(x, y, width, height);
+        this.time = time;
+    }
+
     public SmallPaddle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }

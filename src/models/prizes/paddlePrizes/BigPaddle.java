@@ -6,6 +6,11 @@ import java.awt.*;
 
 public class BigPaddle extends PaddlePrize {
 
+    public BigPaddle(int x, int y, int width, int height, int time) {
+        this(x, y, width, height);
+        this.time = time;
+    }
+
     public BigPaddle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }

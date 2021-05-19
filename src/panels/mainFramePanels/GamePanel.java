@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
     private static final int PANEL_WIDTH = 509;
     private static final int PANEL_HEIGHT = 509;
     private static final Dimension SCREEN_SIZE = new Dimension(PANEL_WIDTH, PANEL_HEIGHT);
-    private static final int PADDLE_WIDTH = 50;
+    private static final int PADDLE_WIDTH = 64;
     private static final int PADDLE_HEIGHT = 10;
     private static final int BALL_DIAMETER = 10;
     private static final int CELL_WIDTH = 30;
@@ -38,20 +38,39 @@ public class GamePanel extends JPanel {
     private ArrayList<Cell> cells;
     private ArrayList<Prize> prizes;
     private ArrayList<Prize> tokenPrizes;
+    private String userName;
     private Player player;
     private Manager manager;
     private boolean isGameOver;
     private Random random;
 
+    public GamePanel(Paddle paddle,
+                     ArrayList<Ball> balls,
+                     ArrayList<Cell> cells,
+                     ArrayList<Prize> prizes,
+                     ArrayList<Prize> tokenPrizes,
+                     String userName,
+                     Manager manager) {
+        this(userName, manager);
+        this.paddle = paddle;
+        this.balls = balls;
+        this.cells = cells;
+        this.prizes = prizes;
+        this.tokenPrizes = tokenPrizes;
+    }
 
-    public GamePanel(Player player, Manager manager) {
+    public GamePanel() {
         this.random = new Random();
         this.isGameOver = false;
-        this.manager = manager;
-        this.player = player;
-        this.player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
         this.setPreferredSize(SCREEN_SIZE);
         this.setBackground(Color.BLACK);
+    }
+
+    public GamePanel(String userName, Manager manager) {
+        this();
+        this.manager = manager;
+        this.player = manager.search(userName);
+        this.player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
         reset();
     }
 
@@ -144,7 +163,13 @@ public class GamePanel extends JPanel {
     }
 
     public void moveCells() {
-        for (Cell cell : cells) cell.y += CELL_HEIGHT;
+        for (Cell cell : cells) {
+            cell.y += CELL_HEIGHT;
+            if (cell instanceof PrizeCell) {
+                Prize prize = ((PrizeCell) cell).getPrize();
+                prize.y += CELL_HEIGHT;
+            }
+        }
         makeCell(0, random.nextInt(8));
     }
 
@@ -165,7 +190,7 @@ public class GamePanel extends JPanel {
                         i--;
                     }
                 }
-                if (cell.intersectsLine(0, 9 * PANEL_HEIGHT / 10, PANEL_WIDTH, 9 * PANEL_HEIGHT / 10)) {
+                if (cell.intersectsLine(0, 0.9 * PANEL_HEIGHT, PANEL_WIDTH, 0.9 * PANEL_HEIGHT)) {
                     gameOver(false);
                 }
             }
@@ -175,7 +200,7 @@ public class GamePanel extends JPanel {
 
             if (ball.x <= 0 || ball.x >= PANEL_WIDTH - BALL_DIAMETER) ball.setXVelocity(-ball.getXVelocity());
             if (ball.y <= 0) ball.setYVelocity(-ball.getYVelocity());
-            if (ball.y >= PANEL_HEIGHT - BALL_DIAMETER) {
+            if (ball.y >= PANEL_HEIGHT) {
                 balls.remove(ball);
                 j--;
                 if (balls.size() == 0) {
@@ -183,6 +208,7 @@ public class GamePanel extends JPanel {
                     if (player.getScore().getHeal() > 0) {
                         newPaddle();
                         newBall();
+                        this.tokenPrizes.clear();
                     } else {
                         gameOver(false);
                     }
@@ -248,7 +274,7 @@ public class GamePanel extends JPanel {
         player.addScore();
         reset();
         player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
-        manager.save();
+        manager.savePlayers();
     }
 
     public void restart() {
@@ -358,5 +384,49 @@ public class GamePanel extends JPanel {
             if (prize instanceof SmallPaddle) return (SmallPaddle) prize;
         }
         return null;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPaddle(Paddle paddle) {
+        this.paddle = paddle;
+    }
+
+    public void setBalls(ArrayList<Ball> balls) {
+        this.balls = balls;
+    }
+
+    public ArrayList<Cell> getCells() {
+        return cells;
+    }
+
+    public void setCells(ArrayList<Cell> cells) {
+        this.cells = cells;
+    }
+
+    public ArrayList<Prize> getPrizes() {
+        return prizes;
+    }
+
+    public void setPrizes(ArrayList<Prize> prizes) {
+        this.prizes = prizes;
+    }
+
+    public void setTokenPrizes(ArrayList<Prize> tokenPrizes) {
+        this.tokenPrizes = tokenPrizes;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        isGameOver = gameOver;
     }
 }

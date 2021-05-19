@@ -6,17 +6,23 @@ import models.cells.WinkCell;
 import java.awt.*;
 
 public class Ball extends Rectangle {
+    private static final int INITIAL_SPEED_Y = -4;
+
     private int xVelocity;
     private int yVelocity;
-    private int initialSpeedX = -4;
-    private int initialSpeedY = -4;
     private boolean isFire;
+    private double velocityRatio;
+
+    public Ball(int x, int y, int width, int height, int xVelocity, int yVelocity, boolean isFire, double velocityRatio) {
+        super(x, y, width, height);
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
+        this.isFire = isFire;
+        this.velocityRatio = velocityRatio;
+    }
 
     public Ball(int x, int y, int width, int height) {
-        super(x, y, width, height);
-        setXVelocity(initialSpeedX);
-        setYVelocity(initialSpeedY);
-        this.isFire = false;
+        this(x, y, width, height, -4, INITIAL_SPEED_Y, false, 1);
     }
 
     public void draw(Graphics g) {
@@ -46,8 +52,8 @@ public class Ball extends Rectangle {
     }
 
     public void move() {
-        x += xVelocity;
-        y += yVelocity;
+        x += velocityRatio * xVelocity;
+        y += velocityRatio * yVelocity;
     }
 
     public void intersectsTo(Cell cell) {
@@ -109,19 +115,15 @@ public class Ball extends Rectangle {
         isFire = fire;
     }
 
-    public void setInitialSpeedX(int initialSpeedX) {
-        this.initialSpeedX = initialSpeedX;
-    }
-
-    public void setInitialSpeedY(int initialSpeedY) {
-        this.initialSpeedY = initialSpeedY;
-    }
-
-    public int getInitialSpeedX() {
-        return initialSpeedX;
-    }
-
     public int getInitialSpeedY() {
-        return initialSpeedY;
+        return INITIAL_SPEED_Y;
+    }
+
+    public double getVelocityRatio() {
+        return velocityRatio;
+    }
+
+    public void setVelocityRatio(double velocityRatio) {
+        this.velocityRatio = velocityRatio;
     }
 }

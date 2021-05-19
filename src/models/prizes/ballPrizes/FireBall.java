@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 public class FireBall extends BallPrize {
 
+    public FireBall(int x, int y, int width, int height, int time) {
+        this(x, y, width, height);
+        this.time = time;
+    }
+
     public FireBall(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
