@@ -66,4 +66,9 @@ public class Paddle extends Rectangle {
     public int getXVelocity() {
         return xVelocity;
     }
+
+    @Override
+    public Paddle clone() {
+        return new Paddle(x, y, width, height, xVelocity, isNormal);
+    }
 }

@@ -35,4 +35,9 @@ public class SlowBall extends BallPrize {
         g.setColor(Color.ORANGE);
         super.draw(g);
     }
+
+    @Override
+    public SlowBall clone() {
+        return new SlowBall(x, y, width, height, time);
+    }
 }

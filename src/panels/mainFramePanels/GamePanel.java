@@ -69,6 +69,7 @@ public class GamePanel extends JPanel {
     public GamePanel(String userName, Manager manager) {
         this();
         this.manager = manager;
+        this.userName = userName;
         this.player = manager.search(userName);
         this.player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
         reset();
@@ -428,5 +429,31 @@ public class GamePanel extends JPanel {
 
     public void setGameOver(boolean gameOver) {
         isGameOver = gameOver;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    @Override
+    public GamePanel clone() {
+        Paddle paddle = getPaddle().clone();
+        ArrayList<Ball> balls = new ArrayList<>();
+        for (Ball ball : getBalls()) {
+            balls.add(ball.clone());
+        }
+        ArrayList<Cell> cells = new ArrayList<>();
+        for (Cell cell : getCells()) {
+            cells.add(cell.clone());
+        }
+        ArrayList<Prize> prizes = new ArrayList<>();
+        for (Prize prize : getPrizes()) {
+            prizes.add(prize.clone());
+        }
+        ArrayList<Prize> tokenPrizes = new ArrayList<>();
+        for (Prize prize : getTokenPrizes()) {
+            tokenPrizes.add(prize.clone());
+        }
+        return new GamePanel(paddle, balls, cells, prizes, tokenPrizes, getUserName(), getManager());
     }
 }

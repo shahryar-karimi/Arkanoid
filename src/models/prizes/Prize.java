@@ -30,4 +30,6 @@ public abstract class Prize extends Rectangle {
     public void setTime(int time) {
         this.time = time;
     }
+
+    public abstract Prize clone();
 }

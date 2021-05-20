@@ -20,5 +20,8 @@ public class GlassyCell extends Cell {
         super.draw(g);
     }
 
-
+    @Override
+    public GlassyCell clone() {
+        return new GlassyCell(x, y, width, height, heal);
+    }
 }

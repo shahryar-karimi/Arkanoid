@@ -31,4 +31,9 @@ public class WinkCell extends Cell {
     public void wink() {
         isWink = !isWink;
     }
+
+    @Override
+    public WinkCell clone() {
+        return new WinkCell(x, y, width, height, heal, isWink);
+    }
 }

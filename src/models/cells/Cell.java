@@ -47,4 +47,7 @@ public abstract class Cell extends Rectangle {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public abstract Cell clone();
 }

@@ -15,6 +15,13 @@ public class RandomPrize extends Prize {
     private Random random;
     private Prize prize;
 
+    public RandomPrize(int x, int y, int width, int height, int time,  Prize prize) {
+        super(x, y, width, height);
+        random = new Random();
+        this.prize = prize;
+        this.time = time;
+    }
+
     public RandomPrize(int x, int y, int width, int height) {
         super(x, y, width, height);
         random = new Random();
@@ -49,6 +56,11 @@ public class RandomPrize extends Prize {
         ImageIcon imageIcon = new ImageIcon("images/questionMark.png");
         Image image = imageIcon.getImage();
         g.drawImage(image, x, y, width, height, null);
+    }
+
+    @Override
+    public RandomPrize clone() {
+        return new RandomPrize(x, y, width, height, time, prize);
     }
 
     public Prize getPrize() {

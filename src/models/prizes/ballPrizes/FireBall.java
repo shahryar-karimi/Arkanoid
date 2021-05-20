@@ -35,4 +35,9 @@ public class FireBall extends BallPrize {
         g.setColor(Color.RED);
         super.draw(g);
     }
+
+    @Override
+    public FireBall clone() {
+        return new FireBall(x, y, width, height, time);
+    }
 }

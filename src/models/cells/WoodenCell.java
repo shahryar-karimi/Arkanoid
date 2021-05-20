@@ -20,4 +20,9 @@ public class WoodenCell extends Cell{
         g.setColor(new Color(109, 52, 11));
         super.draw(g);
     }
+
+    @Override
+    public WoodenCell clone() {
+        return new WoodenCell(x, y, width, height, heal);
+    }
 }

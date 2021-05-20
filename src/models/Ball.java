@@ -126,4 +126,9 @@ public class Ball extends Rectangle {
     public void setVelocityRatio(double velocityRatio) {
         this.velocityRatio = velocityRatio;
     }
+
+    @Override
+    public Ball clone() {
+        return new Ball(x, y, width, height, xVelocity, yVelocity, isFire, velocityRatio);
+    }
 }

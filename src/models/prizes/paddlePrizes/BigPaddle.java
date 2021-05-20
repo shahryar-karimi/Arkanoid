@@ -30,4 +30,9 @@ public class BigPaddle extends PaddlePrize {
         g.setColor(Color.GREEN);
         super.draw(g);
     }
+
+    @Override
+    public BigPaddle clone() {
+        return new BigPaddle(x, y, width, height, time);
+    }
 }

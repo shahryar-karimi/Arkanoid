@@ -34,4 +34,9 @@ public class FastBall extends BallPrize {
         g.setColor(Color.MAGENTA);
         super.draw(g);
     }
+
+    @Override
+    public FastBall clone() {
+        return new FastBall(x, y, width, height, time);
+    }
 }

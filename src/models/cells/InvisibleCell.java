@@ -19,4 +19,9 @@ public class InvisibleCell extends Cell{
         g.setColor(Color.BLACK);
         super.draw(g);
     }
+
+    @Override
+    public InvisibleCell clone() {
+        return new InvisibleCell(x, y, width, height, heal);
+    }
 }

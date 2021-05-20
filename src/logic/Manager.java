@@ -37,9 +37,15 @@ public class Manager {
         return null;
     }
 
-    public void login(String userName) {
+    public void loginNewMainFrame(String userName) {
         if (loginFrame != null) loginFrame.dispose();
         mainFrame = new MainFrame(userName, this);
+    }
+
+    public void login(MainFrame mainFrame) {
+        if (loginFrame != null) loginFrame.dispose();
+        this.mainFrame = mainFrame;
+        mainFrame.setVisible(true);
     }
 
     public void logout() {

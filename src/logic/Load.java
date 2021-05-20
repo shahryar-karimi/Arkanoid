@@ -6,6 +6,7 @@ import models.Paddle;
 import models.Score;
 import models.cells.*;
 import models.prizes.Prize;
+import models.prizes.RandomPrize;
 import models.prizes.ballPrizes.FastBall;
 import models.prizes.ballPrizes.FireBall;
 import models.prizes.ballPrizes.MultiBall;
@@ -64,7 +65,7 @@ public class Load {
         while (scanner.hasNext()) {
             line = skipSpace(1, scanner.nextLine());
             if (line.equals("]")) break;
-            name = skipSpace(1, line).split("\\s")[0];
+            name = skipSpace(1, line).split(" = ")[0];
             pausedGames.put(name, loadMainFrame(scanner, manager));
         }
         scanner.nextLine();
@@ -122,7 +123,7 @@ public class Load {
         while (scanner.hasNext()) {
             line = skipSpace(4, scanner.nextLine());
             if (line.equals("]")) break;
-            line = skipSpace(1, scanner.nextLine());
+            line = skipSpace(1, line);
             String material = line.split(" = ")[0];
             int x = getInt(6, scanner);
             int y = getInt(6, scanner);
@@ -148,12 +149,17 @@ public class Load {
         int width = getInt(i, scanner);
         int height = getInt(i, scanner);
         int time = getInt(i, scanner);
+        if (material.equals("RandomPrize")) {
+            String m = skipSpace(i, scanner.nextLine()).split(" = ")[0];
+            Prize prize = loadPrize(i + 1, scanner, m);
+            scanner.nextLine();
+            return getPrize(x, y, width, height, time, material, prize);
+        }
         scanner.nextLine();
-        return getPrize(x, y, width, height, time, material);
+        return getPrize(x, y, width, height, time, material, null);
     }
 
-
-    private static Prize getPrize(int x, int y, int width, int height, int time, String material) {
+    private static Prize getPrize(int x, int y, int width, int height, int time, String material, Prize prize) {
         if (material.equals("FastBall")) {
             return new FastBall(x, y, width, height, time);
         } else if (material.equals("FireBall")) {
@@ -166,8 +172,11 @@ public class Load {
             return new BigPaddle(x, y, width, height, time);
         } else if (material.equals("ConfusePaddle")) {
             return new ConfusePaddle(x, y, width, height, time);
-        } else
+        } else if (material.equals("SmallPaddle")) {
             return new SmallPaddle(x, y, width, height, time);
+        } else {
+            return new RandomPrize(x, y, width, height, time, prize);
+        }
     }
 
     private static Cell getCell(int x, int y, int width, int height, int heal, String material, Object o) {

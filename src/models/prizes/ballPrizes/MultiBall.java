@@ -42,4 +42,9 @@ public class MultiBall extends BallPrize{
         g.setColor(Color.YELLOW);
         super.draw(g);
     }
+
+    @Override
+    public MultiBall clone() {
+        return new MultiBall(x, y, width, height, time);
+    }
 }

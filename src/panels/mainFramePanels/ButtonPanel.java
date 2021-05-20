@@ -17,7 +17,7 @@ public class ButtonPanel extends JPanel {
     private JButton restart;
     private JButton scoreBoardB;
     private JButton back;
-    private JButton save;
+    private JButton savePosition;
     private JButton exit;
     private Manager manager;
     private String userName;
@@ -48,10 +48,11 @@ public class ButtonPanel extends JPanel {
         back.setFocusable(false);
         back.addActionListener(e -> manager.logout());
 
-        save = new JButton("SavePlayers");
-        save.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 7 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
-        save.setFocusable(false);
-        save.addActionListener(e -> manager.savePosition());
+        savePosition = new JButton("Save Position");
+        savePosition.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 7 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
+        savePosition.setFocusable(false);
+        savePosition.setEnabled(false);
+        savePosition.addActionListener(e -> manager.savePosition());
 
         exit = new JButton("Exit");
         exit.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 9 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -67,7 +68,7 @@ public class ButtonPanel extends JPanel {
 
         this.add(power);
         this.add(back);
-        this.add(save);
+        this.add(savePosition);
         this.add(exit);
         this.add(scoreBoardB);
         this.add(restart);
@@ -89,8 +90,8 @@ public class ButtonPanel extends JPanel {
         return back;
     }
 
-    public JButton getSave() {
-        return save;
+    public JButton getSavePosition() {
+        return savePosition;
     }
 
     public JButton getExit() {
@@ -107,5 +108,14 @@ public class ButtonPanel extends JPanel {
 
     public Player getPlayer() {
         return player;
+    }
+
+    @Override
+    public ButtonPanel clone() {
+        return new ButtonPanel(getUserName(), getManager());
+    }
+
+    public Manager getManager() {
+        return manager;
     }
 }

@@ -30,4 +30,9 @@ public class ConfusePaddle extends PaddlePrize{
         g.setColor(Color.LIGHT_GRAY);
         super.draw(g);
     }
+
+    @Override
+    public ConfusePaddle clone() {
+        return new ConfusePaddle(x, y, width, height, time);
+    }
 }

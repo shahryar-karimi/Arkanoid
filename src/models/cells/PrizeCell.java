@@ -1,10 +1,17 @@
 package models.cells;
 
 import models.prizes.Prize;
+import models.prizes.ballPrizes.FastBall;
+import models.prizes.ballPrizes.FireBall;
+import models.prizes.ballPrizes.MultiBall;
+import models.prizes.ballPrizes.SlowBall;
+import models.prizes.paddlePrizes.BigPaddle;
+import models.prizes.paddlePrizes.ConfusePaddle;
+import models.prizes.paddlePrizes.SmallPaddle;
 
 import java.awt.*;
 
-public class PrizeCell extends Cell{
+public class PrizeCell extends Cell {
 
     private Prize prize;
 
@@ -31,5 +38,10 @@ public class PrizeCell extends Cell{
     public void draw(Graphics g) {
         g.setColor(new Color(215, 189, 49));
         super.draw(g);
+    }
+
+    @Override
+    public PrizeCell clone() {
+        return new PrizeCell(x, y, width, height, heal, prize.clone());
     }
 }

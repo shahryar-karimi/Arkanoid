@@ -6,12 +6,14 @@ import models.Paddle;
 import models.Score;
 import models.cells.*;
 import models.prizes.Prize;
+import models.prizes.RandomPrize;
 import models.prizes.ballPrizes.FastBall;
 import models.prizes.ballPrizes.FireBall;
 import models.prizes.ballPrizes.MultiBall;
 import models.prizes.ballPrizes.SlowBall;
 import models.prizes.paddlePrizes.BigPaddle;
 import models.prizes.paddlePrizes.ConfusePaddle;
+import models.prizes.paddlePrizes.SmallPaddle;
 import panels.mainFramePanels.GamePanel;
 
 import java.awt.*;
@@ -65,7 +67,7 @@ public class SavePlayers {
 
     private static void saveButtonPanel(FileWriter fileWriter, Player player) throws IOException {
         fileWriter.write(space(3) + "Button panel = [\n");
-        fileWriter.write(space(4) + "UserName = " + player.getUserName());
+        fileWriter.write(space(4) + "UserName = " + player.getUserName() + "\n");
         fileWriter.write(space(3) + "]\n");
     }
 
@@ -76,14 +78,14 @@ public class SavePlayers {
         saveCells(fileWriter, gamePanel.getCells());
         savePrizes(fileWriter, gamePanel.getPrizes());
         saveTokenPrizes(fileWriter, gamePanel.getTokenPrizes());
-        fileWriter.write(space(4) + "UserName = " + player.getUserName());
+        fileWriter.write(space(4) + "UserName = " + player.getUserName() + "\n");
         fileWriter.write(space(3) + "]\n");
     }
 
     private static void saveTokenPrizes(FileWriter fileWriter, ArrayList<Prize> tokenPrizes) throws IOException {
         fileWriter.write(space(4) + "TokenPrizes = [\n");
         for (Prize prize : tokenPrizes) {
-            savePrize(fileWriter, prize);
+            savePrize(fileWriter, prize, 5);
         }
         fileWriter.write(space(4) + "]\n");
     }
@@ -91,30 +93,35 @@ public class SavePlayers {
     private static void savePrizes(FileWriter fileWriter, ArrayList<Prize> prizes) throws IOException {
         fileWriter.write(space(4) + "Prizes = [\n");
         for (Prize prize : prizes) {
-            savePrize(fileWriter, prize);
+            savePrize(fileWriter, prize, 5);
         }
         fileWriter.write(space(4) + "]\n");
     }
 
-    private static void savePrize(FileWriter fileWriter, Prize prize) throws IOException {
+    private static void savePrize(FileWriter fileWriter, Prize prize, int i) throws IOException {
         if (prize instanceof FastBall)
-            fileWriter.write(space(5) + "FastBall");
+            fileWriter.write(space(i) + "FastBall");
         else if (prize instanceof FireBall)
-            fileWriter.write(space(5) + "FireBall");
+            fileWriter.write(space(i) + "FireBall");
         else if (prize instanceof MultiBall)
-            fileWriter.write(space(5) + "MultiBall");
+            fileWriter.write(space(i) + "MultiBall");
         else if (prize instanceof SlowBall)
-            fileWriter.write(space(5) + "SlowBall");
+            fileWriter.write(space(i) + "SlowBall");
         else if (prize instanceof BigPaddle)
-            fileWriter.write(space(5) + "BigPaddle");
+            fileWriter.write(space(i) + "BigPaddle");
         else if (prize instanceof ConfusePaddle)
-            fileWriter.write(space(5) + "ConfusePaddle");
+            fileWriter.write(space(i) + "ConfusePaddle");
+        else if (prize instanceof SmallPaddle)
+            fileWriter.write(space(i) + "SmallPaddle");
         else
-            fileWriter.write(space(5) + "SmallPaddle");
+            fileWriter.write(space(i) + "RandomPrize");
         fileWriter.write(" = [\n");
-        saveRect(fileWriter, 6, prize);
-        fileWriter.write(space(6) + "time = " + prize.getTime() + "\n");
-        fileWriter.write(space(5) + "]\n");
+        saveRect(fileWriter, i + 1, prize);
+        fileWriter.write(space(i + 1) + "time = " + prize.getTime() + "\n");
+        if (prize instanceof RandomPrize) {
+            savePrize(fileWriter, ((RandomPrize) prize).getPrize(), i + 1);
+        }
+        fileWriter.write(space(i) + "]\n");
     }
 
     private static void saveCells(FileWriter fileWriter, ArrayList<Cell> cells) throws IOException {
@@ -139,9 +146,8 @@ public class SavePlayers {
         fileWriter.write(" = [\n");
         saveRect(fileWriter, 6, cell);
         fileWriter.write(space(6) + "heal = " + cell.getHeal() + "\n");
-        fileWriter.write(space(6) + "score = " + cell.getScore() + "\n");
         if (cell instanceof PrizeCell) {
-            savePrize(fileWriter, ((PrizeCell) cell).getPrize());
+            savePrize(fileWriter, ((PrizeCell) cell).getPrize(), 6);
         } else if (cell instanceof WinkCell) {
             fileWriter.write(space(6) + "isWink = " + ((WinkCell) cell).isWink() + "\n");
         }
@@ -167,7 +173,7 @@ public class SavePlayers {
     }
 
     private static void savePaddle(FileWriter fileWriter, Paddle paddle) throws IOException {
-        fileWriter.write(space(4) + "Paddle = [");
+        fileWriter.write(space(4) + "Paddle = [\n");
         saveRect(fileWriter, 5, paddle);
         fileWriter.write(space(5) + "xVelocity = " + paddle.getXVelocity() + "\n");
         fileWriter.write(space(5) + "isNormal = " + paddle.isNormal() + "\n");

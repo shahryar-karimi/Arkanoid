@@ -1,6 +1,9 @@
 package frames;
 
 import logic.Manager;
+import models.Ball;
+import models.Paddle;
+import models.cells.*;
 import models.prizes.Prize;
 import models.prizes.ballPrizes.MultiBall;
 import panels.mainFramePanels.ButtonPanel;
@@ -13,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -66,13 +68,19 @@ public class MainFrame extends JFrame implements ActionListener {
             if (buttonPanel.getPower().getText().equals("Pause")) {
                 buttonPanel.getPower().setText("Play");
                 buttonPanel.getRestart().setEnabled(true);
-                buttonPanel.getSave().setEnabled(true);
+                buttonPanel.getScoreBoardB().setEnabled(true);
+                buttonPanel.getBack().setEnabled(true);
+                buttonPanel.getSavePosition().setEnabled(true);
+                buttonPanel.getExit().setEnabled(true);
                 gameLoopTimer.stop();
             } else {
                 buttonPanel.getPower().setText("Pause");
                 gameLoopTimer.start();
                 buttonPanel.getRestart().setEnabled(false);
-                buttonPanel.getSave().setEnabled(false);
+                buttonPanel.getScoreBoardB().setEnabled(false);
+                buttonPanel.getBack().setEnabled(false);
+                buttonPanel.getSavePosition().setEnabled(false);
+                buttonPanel.getExit().setEnabled(false);
             }
         });
     }
@@ -100,13 +108,6 @@ public class MainFrame extends JFrame implements ActionListener {
         }
 
         if (gamePanel.isGameOver()) {
-            HashMap<String, MainFrame> pg = gamePanel.getPlayer().getPausesGames();
-            for (String name : pg.keySet()) {
-                if (pg.get(name) == this) {
-                    pg.remove(name);
-                    break;
-                }
-            }
             restart();
         }
         gamePanel.move();
@@ -161,6 +162,13 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public void setAddRowCounter(int addRowCounter) {
         this.addRowCounter = addRowCounter;
+    }
+
+    @Override
+    public MainFrame clone() {
+        GamePanel gamePanel = this.gamePanel.clone();
+        ButtonPanel buttonPanel = this.buttonPanel.clone();
+        return new MainFrame(timeLoop, gamePanel, buttonPanel, winkCounter, addRowCounter);
     }
 
     public class AL implements KeyListener {
