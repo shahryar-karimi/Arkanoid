@@ -6,6 +6,12 @@ public class Score extends Rectangle {
     private int score;
     private int heal;
 
+    public Score(int x, int y, int width, int height, int score, int heal) {
+        super(x, y, width, height);
+        this.score = score;
+        this.heal = heal;
+    }
+
     public Score(int x, int y, int width, int height, int score) {
         super(x, y, width, height);
         this.score = score;

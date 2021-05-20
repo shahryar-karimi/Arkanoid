@@ -50,8 +50,9 @@ public class GamePanel extends JPanel {
                      ArrayList<Prize> prizes,
                      ArrayList<Prize> tokenPrizes,
                      String userName,
-                     Manager manager) {
-        this(userName, manager);
+                     Manager manager,
+                     Score score) {
+        this(userName, manager, score);
         this.paddle = paddle;
         this.balls = balls;
         this.cells = cells;
@@ -64,6 +65,15 @@ public class GamePanel extends JPanel {
         this.isGameOver = false;
         this.setPreferredSize(SCREEN_SIZE);
         this.setBackground(Color.BLACK);
+    }
+
+    public GamePanel(String userName, Manager manager, Score score) {
+        this();
+        this.manager = manager;
+        this.userName = userName;
+        this.player = manager.search(userName);
+        this.player.setScore(score);
+        reset();
     }
 
     public GamePanel(String userName, Manager manager) {
@@ -454,6 +464,6 @@ public class GamePanel extends JPanel {
         for (Prize prize : getTokenPrizes()) {
             tokenPrizes.add(prize.clone());
         }
-        return new GamePanel(paddle, balls, cells, prizes, tokenPrizes, getUserName(), getManager());
+        return new GamePanel(paddle, balls, cells, prizes, tokenPrizes, getUserName(), getManager(), getPlayer().getScore());
     }
 }

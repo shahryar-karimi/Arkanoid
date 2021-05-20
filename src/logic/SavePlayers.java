@@ -47,10 +47,19 @@ public class SavePlayers {
     private static void savePlayer(FileWriter fileWriter, Player player) throws IOException {
         saveInformation(fileWriter, "userName = ", player.getUserName());
         saveInformation(fileWriter, "password = ", player.getPassword());
+        saveScore(fileWriter, player);
         saveScores(fileWriter, player);
         fileWriter.write(space(1) + "paused game = [\n");
         for (String name : player.getPausesGames().keySet())
             saveMainFrame(fileWriter, player, name);
+        fileWriter.write(space(1) + "]\n");
+
+    }
+
+    private static void saveScore(FileWriter fileWriter, Player player) throws IOException{
+        fileWriter.write(space(1) + "Score = [\n");
+        fileWriter.write(space(2) + "score = " + player.getScore().getScore() + "\n");
+        fileWriter.write(space(2) + "heal = " + player.getScore().getHeal() + "\n");
         fileWriter.write(space(1) + "]\n");
     }
 

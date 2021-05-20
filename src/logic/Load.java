@@ -39,7 +39,7 @@ public class Load {
                 if (line.equals("{")) {
                     Player player = loadPlayer(scanner);
                     manager.addPlayer(player);
-                    player.setPausesGames(getPausedGames(scanner, manager));
+                    player.setPausesGames(getPausedGames(scanner, manager, player));
                 }
             }
         } catch (Exception e) {
@@ -52,12 +52,20 @@ public class Load {
     private static Player loadPlayer(Scanner scanner) {
         String userName = getInformation(scanner);
         String password = getInformation(scanner);
+        Score score = getScore(scanner);
         ArrayList<Score> scores = getScores(scanner);
         Player player = new Player();
-        return player.setTokenScores(scores).setPassword(password).setUserName(userName);
+        return player.setTokenScores(scores).setPassword(password).setUserName(userName).setScore(score);
     }
 
-    private static HashMap<String, MainFrame> getPausedGames(Scanner scanner, Manager manager) {
+    private static Score getScore(Scanner scanner) {
+        scanner.nextLine();
+        int score = getInt(2, scanner);
+        int heal = getInt(2, scanner);
+        return new Score(0, 0, GamePanel.getPanelWidth(), GamePanel.getPanelHeight(), score, heal);
+    }
+
+    private static HashMap<String, MainFrame> getPausedGames(Scanner scanner, Manager manager, Player player) {
         scanner.nextLine();
         HashMap<String, MainFrame> pausedGames = new HashMap<>();
         String line;
@@ -66,15 +74,15 @@ public class Load {
             line = skipSpace(1, scanner.nextLine());
             if (line.equals("]")) break;
             name = skipSpace(1, line).split(" = ")[0];
-            pausedGames.put(name, loadMainFrame(scanner, manager));
+            pausedGames.put(name, loadMainFrame(scanner, manager, player));
         }
         scanner.nextLine();
         return pausedGames;
     }
 
-    private static MainFrame loadMainFrame(Scanner scanner, Manager manager) {
+    private static MainFrame loadMainFrame(Scanner scanner, Manager manager, Player player) {
         int timeLoop = getInt(3, scanner);
-        GamePanel gamePanel = getGamePanel(scanner, manager);
+        GamePanel gamePanel = getGamePanel(scanner, manager, player);
         ButtonPanel buttonPanel = getButtonPanel(scanner, manager);
         int winkCounter = getInt(3, scanner);
         int addRowCounter = getInt(3, scanner);
@@ -89,7 +97,7 @@ public class Load {
         return new ButtonPanel(userName, manager);
     }
 
-    private static GamePanel getGamePanel(Scanner scanner, Manager manager) {
+    private static GamePanel getGamePanel(Scanner scanner, Manager manager, Player player) {
         scanner.nextLine();
         Paddle paddle = loadPaddle(scanner);
         ArrayList<Ball> balls = loadBalls(scanner);
@@ -98,7 +106,7 @@ public class Load {
         ArrayList<Prize> tokenPrize = loadPrizes(scanner);
         String userName = getString(4, scanner);
         scanner.nextLine();
-        return new GamePanel(paddle, balls, cells, prizes, tokenPrize, userName, manager);
+        return new GamePanel(paddle, balls, cells, prizes, tokenPrize, userName, manager, player.getScore());
     }
 
     private static ArrayList<Prize> loadPrizes(Scanner scanner) {

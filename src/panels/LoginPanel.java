@@ -84,6 +84,8 @@ public class LoginPanel extends JPanel implements ActionListener {
                 player = manager.search(userName);
             }
             showInformationMessageDialog(player.getUserName() + " Logged in!");
+            this.comboBox.removeAllItems();
+            this.comboBox.addItem("New Game");
             for (String name : player.getPausesGames().keySet()) {
                 this.comboBox.addItem(name);
             }
