@@ -19,14 +19,15 @@ public class FastBall extends BallPrize {
     @Override
     public void offPrize(ArrayList<Ball> balls) {
         for (Ball ball : balls) {
-            ball.setVelocityRatio(ball.getVelocityRatio() / 2);
+            if (ball.getFastCounter() > 0)
+                ball.setFastCounter(ball.getFastCounter() - 1);
         }
     }
 
     @Override
     public void onPrize(ArrayList<Ball> balls) {
         for (Ball ball : balls)
-            ball.setVelocityRatio(ball.getVelocityRatio() * 2);
+            ball.setFastCounter(ball.getFastCounter() + 1);
     }
 
     @Override

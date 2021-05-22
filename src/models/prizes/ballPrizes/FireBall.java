@@ -26,7 +26,7 @@ public class FireBall extends BallPrize {
     @Override
     public void onPrize(ArrayList<Ball> balls) {
         for (Ball ball : balls) {
-            ball.setFire(!ball.isFire());
+            ball.setFire(true);
         }
     }
 

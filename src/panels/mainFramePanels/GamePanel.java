@@ -34,6 +34,7 @@ public class GamePanel extends JPanel {
     private static final int PRIZE_DIAMETER = 10;
 
     private Paddle paddle;
+    private Score score;
     private ArrayList<Ball> balls;
     private ArrayList<Cell> cells;
     private ArrayList<Prize> prizes;
@@ -42,7 +43,7 @@ public class GamePanel extends JPanel {
     private Player player;
     private Manager manager;
     private boolean isGameOver;
-    private Random random;
+    private final Random random;
 
     public GamePanel(Paddle paddle,
                      ArrayList<Ball> balls,
@@ -52,7 +53,11 @@ public class GamePanel extends JPanel {
                      String userName,
                      Manager manager,
                      Score score) {
-        this(userName, manager, score);
+        this();
+        this.manager = manager;
+        this.userName = userName;
+        this.player = manager.search(userName);
+        this.score = score;
         this.paddle = paddle;
         this.balls = balls;
         this.cells = cells;
@@ -67,21 +72,13 @@ public class GamePanel extends JPanel {
         this.setBackground(Color.BLACK);
     }
 
-    public GamePanel(String userName, Manager manager, Score score) {
-        this();
-        this.manager = manager;
-        this.userName = userName;
-        this.player = manager.search(userName);
-        this.player.setScore(score);
-        reset();
-    }
-
     public GamePanel(String userName, Manager manager) {
         this();
         this.manager = manager;
         this.userName = userName;
         this.player = manager.search(userName);
-        this.player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+//        this.player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+        this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
         reset();
     }
 
@@ -153,7 +150,8 @@ public class GamePanel extends JPanel {
 
     public void draw(Graphics g) {
         paddle.draw(g);
-        player.getScore().draw(g);
+//        player.getScore().draw(g);
+        score.draw(g);
         cellDraw(g);
         prizeDraw(g);
         ballDraw(g);
@@ -196,18 +194,17 @@ public class GamePanel extends JPanel {
                         if (cell instanceof PrizeCell) {
                             prizes.add(((PrizeCell) cell).getPrize());
                         }
-                        player.getScore().setScore(player.getScore().getScore() + cell.getScore());
+//                        player.getScore().setScore(player.getScore().getScore() + cell.getScore());
+                        score.setScore(score.getScore() + cell.getScore());
                         cells.remove(i);
                         i--;
                     }
                 }
-                if (cell.intersectsLine(0, 0.9 * PANEL_HEIGHT, PANEL_WIDTH, 0.9 * PANEL_HEIGHT)) {
+                if (cell.intersectsLine(0, 0.9 * PANEL_HEIGHT, PANEL_WIDTH, 0.9 * PANEL_HEIGHT))
                     gameOver(false);
-                }
             }
-            if (ball.intersects(paddle)) {
+            if (ball.intersects(paddle))
                 ball.intersectsTo(paddle);
-            }
 
             if (ball.x <= 0 || ball.x >= PANEL_WIDTH - BALL_DIAMETER) ball.setXVelocity(-ball.getXVelocity());
             if (ball.y <= 0) ball.setYVelocity(-ball.getYVelocity());
@@ -215,14 +212,14 @@ public class GamePanel extends JPanel {
                 balls.remove(ball);
                 j--;
                 if (balls.size() == 0) {
-                    player.getScore().loseHeal();
-                    if (player.getScore().getHeal() > 0) {
+//                    player.getScore().loseHeal();
+                    score.loseHeal();
+                    if (score.getHeal() > 0) {
                         newPaddle();
                         newBall();
                         this.tokenPrizes.clear();
-                    } else {
+                    } else
                         gameOver(false);
-                    }
                 }
             }
         }
@@ -241,6 +238,8 @@ public class GamePanel extends JPanel {
                     prize.onPrize(this);
                     tokenPrizes.add(prize);
                 } else {
+                    if (p instanceof FireBall)
+                        p.onPrize(this);
                     p.setTime(20_000);
                 }
                 prizes.remove(i);
@@ -273,25 +272,26 @@ public class GamePanel extends JPanel {
 
     public void gameOver(boolean result) {
         if (result) {
-            gameOver("You won!\nYour score is: " + player.getScore().getScore());
+            gameOver("You won!\nYour score is: " + score.getScore());
         } else {
-            gameOver("Game Over\nYour score is: " + player.getScore().getScore());
+            gameOver("Game Over\nYour score is: " + score.getScore());
         }
     }
 
     private void gameOver(String message) {
         this.isGameOver = true;
         JOptionPane.showMessageDialog(null, message, "Game result", JOptionPane.INFORMATION_MESSAGE);
-        player.addScore();
-        reset();
-        player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+        player.addScore(score);
+//        player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+        score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
         manager.savePlayers();
     }
 
     public void restart() {
         this.isGameOver = false;
         reset();
-        player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+//        player.setScore(new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0));
+        score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
         repaint();
     }
 
@@ -334,14 +334,6 @@ public class GamePanel extends JPanel {
 
     public static int getBallDiameter() {
         return BALL_DIAMETER;
-    }
-
-    public static int getPaddleWidth() {
-        return PADDLE_WIDTH;
-    }
-
-    public static int getPaddleHeight() {
-        return PADDLE_HEIGHT;
     }
 
     public ArrayList<Prize> getTokenPrizes() {
@@ -409,14 +401,6 @@ public class GamePanel extends JPanel {
         return player;
     }
 
-    public void setPaddle(Paddle paddle) {
-        this.paddle = paddle;
-    }
-
-    public void setBalls(ArrayList<Ball> balls) {
-        this.balls = balls;
-    }
-
     public ArrayList<Cell> getCells() {
         return cells;
     }
@@ -433,16 +417,12 @@ public class GamePanel extends JPanel {
         this.prizes = prizes;
     }
 
-    public void setTokenPrizes(ArrayList<Prize> tokenPrizes) {
-        this.tokenPrizes = tokenPrizes;
-    }
-
-    public void setGameOver(boolean gameOver) {
-        isGameOver = gameOver;
-    }
-
     public Manager getManager() {
         return manager;
+    }
+
+    public Score getScore() {
+        return score;
     }
 
     @Override
@@ -464,6 +444,7 @@ public class GamePanel extends JPanel {
         for (Prize prize : getTokenPrizes()) {
             tokenPrizes.add(prize.clone());
         }
-        return new GamePanel(paddle, balls, cells, prizes, tokenPrizes, getUserName(), getManager(), getPlayer().getScore());
+        Score score = getScore().clone();
+        return new GamePanel(paddle, balls, cells, prizes, tokenPrizes, getUserName(), getManager(), score);
     }
 }

@@ -11,18 +11,22 @@ public class Ball extends Rectangle {
     private int xVelocity;
     private int yVelocity;
     private boolean isFire;
+    private int fastCounter;
+    private int slowCounter;
     private double velocityRatio;
 
-    public Ball(int x, int y, int width, int height, int xVelocity, int yVelocity, boolean isFire, double velocityRatio) {
+    public Ball(int x, int y, int width, int height, int xVelocity, int yVelocity, boolean isFire, int fastCounter, int slowCounter) {
         super(x, y, width, height);
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.isFire = isFire;
-        this.velocityRatio = velocityRatio;
+        this.fastCounter = fastCounter;
+        this.slowCounter = slowCounter;
+        setVelocityRatio();
     }
 
     public Ball(int x, int y, int width, int height) {
-        this(x, y, width, height, -4, INITIAL_SPEED_Y, false, 1);
+        this(x, y, width, height, -4, INITIAL_SPEED_Y, false, 0, 0);
     }
 
     public void draw(Graphics g) {
@@ -115,20 +119,30 @@ public class Ball extends Rectangle {
         isFire = fire;
     }
 
-    public int getInitialSpeedY() {
-        return INITIAL_SPEED_Y;
+    public int getFastCounter() {
+        return fastCounter;
     }
 
-    public double getVelocityRatio() {
-        return velocityRatio;
+    public void setFastCounter(int fastCounter) {
+        this.fastCounter = fastCounter;
+        setVelocityRatio();
     }
 
-    public void setVelocityRatio(double velocityRatio) {
-        this.velocityRatio = velocityRatio;
+    public int getSlowCounter() {
+        return slowCounter;
+    }
+
+    public void setSlowCounter(int slowCounter) {
+        this.slowCounter = slowCounter;
+        setVelocityRatio();
+    }
+
+    private void setVelocityRatio() {
+        velocityRatio = Math.pow(2, fastCounter - slowCounter);
     }
 
     @Override
     public Ball clone() {
-        return new Ball(x, y, width, height, xVelocity, yVelocity, isFire, velocityRatio);
+        return new Ball(x, y, width, height, xVelocity, yVelocity, isFire, fastCounter, slowCounter);
     }
 }

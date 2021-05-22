@@ -13,9 +13,7 @@ public class Score extends Rectangle {
     }
 
     public Score(int x, int y, int width, int height, int score) {
-        super(x, y, width, height);
-        this.score = score;
-        this.heal = 3;
+        this(x, y, width, height, score, 3);
     }
 
     public int getScore() {
@@ -42,5 +40,10 @@ public class Score extends Rectangle {
 
     public void loseHeal() {
         if (heal > 0) heal--;
+    }
+
+    @Override
+    public Score clone() {
+        return new Score(x, y, width, height, score, heal);
     }
 }

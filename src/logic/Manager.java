@@ -66,7 +66,8 @@ public class Manager {
     public void savePosition() {
         String name = JOptionPane.showInputDialog(null, "Enter save name:", "Get name", JOptionPane.QUESTION_MESSAGE);
         while (name == null) name = JOptionPane.showInputDialog(null, "Enter save name:", "Get name", JOptionPane.QUESTION_MESSAGE);
-        mainFrame.getGamePanel().getPlayer().addPausesGame(name, mainFrame);
+        mainFrame.getGamePanel().getPlayer().addPausesGame(name, mainFrame.clone());
+        savePlayers();
     }
 
     public void restart() {

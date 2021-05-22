@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Player {
     private String userName;
     private String password;
-    private Score score;
+//    private Score score;
     private ArrayList<Score> tokenScores;
     private HashMap<String, MainFrame> pausesGames;
 
@@ -18,7 +18,7 @@ public class Player {
         this.password = password;
         this.tokenScores = new ArrayList<>();
         this.pausesGames = new HashMap<>();
-        this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
+//        this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
     }
 
     public Player() {}
@@ -32,18 +32,18 @@ public class Player {
         return this;
     }
 
-    public void addScore() {
+    public void addScore(Score score) {
         tokenScores.add(score);
     }
-
-    public Score getScore() {
-        return score;
-    }
-
-    public Player setScore(Score score) {
-        this.score = score;
-        return this;
-    }
+//
+//    public Score getScore() {
+//        return score;
+//    }
+//
+//    public Player setScore(Score score) {
+//        this.score = score;
+//        return this;
+//    }
 
     public String getUserName() {
         return userName;

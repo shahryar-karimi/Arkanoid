@@ -60,50 +60,58 @@ public class LoginPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login) {
-            String userName = userNameT.getText();
-            player = manager.search(userName);
-            if (player != null) {
-                char[] playerPassword = player.getPassword().toCharArray();
-                if (passwordT.getPassword().length != playerPassword.length) {
+            loginAction();
+        } else if (e.getSource() == play) {
+            playAction();
+        }
+    }
+
+    private void playAction() {
+        String name = (String) this.comboBox.getSelectedItem();
+        if (name == null) return;
+        if (name.equals("New Game")) {
+            manager.loginNewMainFrame(player.getUserName());
+        } else {
+            MainFrame mainFrame = player.getPausesGames().get(name).clone();
+            manager.login(mainFrame);
+        }
+        play.setEnabled(false);
+        comboBox.setEnabled(false);
+    }
+
+    private void loginAction() {
+        String userName = userNameT.getText();
+        player = manager.search(userName);
+        if (player != null) {
+            char[] playerPassword = player.getPassword().toCharArray();
+            if (passwordT.getPassword().length != playerPassword.length) {
+                showErrorMessageDialog("Password is incorrect");
+                return;
+            }
+            for (int i = 0; i < playerPassword.length; i++) {
+                if (playerPassword[i] != passwordT.getPassword()[i]) {
                     showErrorMessageDialog("Password is incorrect");
                     return;
                 }
-                for (int i = 0; i < playerPassword.length; i++) {
-                    if (playerPassword[i] != passwordT.getPassword()[i]) {
-                        showErrorMessageDialog("Password is incorrect");
-                        return;
-                    }
-                }
-            } else {
-                String password = "";
-                for (char c : passwordT.getPassword()) {
-                    password += c;
-                }
-                manager.createAccount(userName, password);
-                showInformationMessageDialog("Your account created successfully!");
-                player = manager.search(userName);
             }
-            showInformationMessageDialog(player.getUserName() + " Logged in!");
-            this.comboBox.removeAllItems();
-            this.comboBox.addItem("New Game");
-            for (String name : player.getPausesGames().keySet()) {
-                this.comboBox.addItem(name);
+        } else {
+            String password = "";
+            for (char c : passwordT.getPassword()) {
+                password += c;
             }
-            this.comboBox.setSelectedIndex(0);
-            this.comboBox.setEnabled(true);
-            this.play.setEnabled(true);
-        } else if (e.getSource() == play) {
-            String name = (String) this.comboBox.getSelectedItem();
-            if (name == null) return;
-            if (name.equals("New Game")) {
-                manager.loginNewMainFrame(player.getUserName());
-            } else {
-                MainFrame mainFrame = player.getPausesGames().get(name).clone();
-                manager.login(mainFrame);
-            }
-            play.setEnabled(false);
-            comboBox.setEnabled(false);
+            manager.createAccount(userName, password);
+            showInformationMessageDialog("Your account created successfully!");
+            player = manager.search(userName);
         }
+        showInformationMessageDialog(player.getUserName() + " Logged in!");
+        this.comboBox.removeAllItems();
+        this.comboBox.addItem("New Game");
+        for (String name : player.getPausesGames().keySet()) {
+            this.comboBox.addItem(name);
+        }
+        this.comboBox.setSelectedIndex(0);
+        this.comboBox.setEnabled(true);
+        this.play.setEnabled(true);
     }
 
     public void showErrorMessageDialog(String message) {

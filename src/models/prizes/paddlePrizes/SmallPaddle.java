@@ -17,12 +17,13 @@ public class SmallPaddle extends PaddlePrize {
 
     @Override
     public void onPrize(Paddle paddle) {
-        paddle.width = paddle.width / 2;
+        paddle.setSmallCounter(paddle.getSmallCounter() + 1);
     }
 
     @Override
     public void offPrize(Paddle paddle) {
-        paddle.width = paddle.width * 2;
+        if (paddle.getSmallCounter() > 0)
+            paddle.setSmallCounter(paddle.getSmallCounter() - 1);
     }
 
     @Override

@@ -6,11 +6,9 @@ import panels.LoginPanel;
 import javax.swing.*;
 
 public class LoginFrame extends JFrame {
-    private LoginPanel loginPanel;
-
 
     public LoginFrame(Manager manager) {
-        loginPanel = new LoginPanel(manager);
+        LoginPanel loginPanel = new LoginPanel(manager);
 
         this.setSize(350, 350);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

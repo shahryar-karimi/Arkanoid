@@ -26,8 +26,7 @@ public class SavePlayers {
 
     private static File file;
 
-    private SavePlayers() {
-    }
+    private SavePlayers() {}
 
     public static void save(Manager manager) {
         file = new File("Saves.txt");
@@ -47,7 +46,6 @@ public class SavePlayers {
     private static void savePlayer(FileWriter fileWriter, Player player) throws IOException {
         saveInformation(fileWriter, "userName = ", player.getUserName());
         saveInformation(fileWriter, "password = ", player.getPassword());
-        saveScore(fileWriter, player);
         saveScores(fileWriter, player);
         fileWriter.write(space(1) + "paused game = [\n");
         for (String name : player.getPausesGames().keySet())
@@ -56,11 +54,11 @@ public class SavePlayers {
 
     }
 
-    private static void saveScore(FileWriter fileWriter, Player player) throws IOException{
-        fileWriter.write(space(1) + "Score = [\n");
-        fileWriter.write(space(2) + "score = " + player.getScore().getScore() + "\n");
-        fileWriter.write(space(2) + "heal = " + player.getScore().getHeal() + "\n");
-        fileWriter.write(space(1) + "]\n");
+    private static void saveScore(FileWriter fileWriter, Score score) throws IOException{
+        fileWriter.write(space(4) + "Score = [\n");
+        fileWriter.write(space(5) + "score = " + score.getScore() + "\n");
+        fileWriter.write(space(5) + "heal = " + score.getHeal() + "\n");
+        fileWriter.write(space(4) + "]\n");
     }
 
     private static void saveMainFrame(FileWriter fileWriter, Player player, String name) throws IOException {
@@ -83,6 +81,7 @@ public class SavePlayers {
     private static void saveGamePanel(FileWriter fileWriter, GamePanel gamePanel, Player player) throws IOException {
         fileWriter.write(space(3) + "Game panel = [\n");
         savePaddle(fileWriter, gamePanel.getPaddle());
+        saveScore(fileWriter, gamePanel.getScore());
         saveBalls(fileWriter, gamePanel.getBalls());
         saveCells(fileWriter, gamePanel.getCells());
         savePrizes(fileWriter, gamePanel.getPrizes());
@@ -177,7 +176,8 @@ public class SavePlayers {
         fileWriter.write(space(6) + "xVelocity = " + ball.getXVelocity() + "\n");
         fileWriter.write(space(6) + "yVelocity = " + ball.getYVelocity() + "\n");
         fileWriter.write(space(6) + "isFire = " + ball.isFire() + "\n");
-        fileWriter.write(space(6) + "velocityRatio = " + ball.getVelocityRatio() + "\n");
+        fileWriter.write(space(6) + "fastCounter = " + ball.getFastCounter() + "\n");
+        fileWriter.write(space(6) + "slowCounter = " + ball.getSlowCounter() + "\n");
         fileWriter.write(space(5) + "]\n");
     }
 
@@ -186,6 +186,8 @@ public class SavePlayers {
         saveRect(fileWriter, 5, paddle);
         fileWriter.write(space(5) + "xVelocity = " + paddle.getXVelocity() + "\n");
         fileWriter.write(space(5) + "isNormal = " + paddle.isNormal() + "\n");
+        fileWriter.write(space(5) + "bigCounter = " + paddle.getBigCounter() + "\n");
+        fileWriter.write(space(5) + "smallCounter = " + paddle.getSmallCounter() + "\n");
         fileWriter.write(space(4) + "]\n");
     }
 

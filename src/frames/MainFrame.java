@@ -1,9 +1,6 @@
 package frames;
 
 import logic.Manager;
-import models.Ball;
-import models.Paddle;
-import models.cells.*;
 import models.prizes.Prize;
 import models.prizes.ballPrizes.MultiBall;
 import panels.mainFramePanels.ButtonPanel;
@@ -107,11 +104,10 @@ public class MainFrame extends JFrame implements ActionListener {
             }
         }
 
-        if (gamePanel.isGameOver()) {
-            restart();
-        }
         gamePanel.move();
         gamePanel.checkCollision();
+        if (gamePanel.isGameOver())
+            restart();
 
         winkCounter++;
         if (winkCounter == 20) {
@@ -133,35 +129,22 @@ public class MainFrame extends JFrame implements ActionListener {
     public void restart() {
         gameLoopTimer.stop();
         buttonPanel.getPower().setText("Play");
+        buttonPanel.getScoreBoardB().setEnabled(true);
+        buttonPanel.getBack().setEnabled(true);
+        buttonPanel.getExit().setEnabled(true);
         gamePanel.restart();
-    }
-
-    public ButtonPanel getButtonPanel() {
-        return buttonPanel;
     }
 
     public int getTimeLoop() {
         return timeLoop;
     }
 
-    public void setTimeLoop(int timeLoop) {
-        this.timeLoop = timeLoop;
-    }
-
     public int getWinkCounter() {
         return winkCounter;
     }
 
-    public void setWinkCounter(int winkCounter) {
-        this.winkCounter = winkCounter;
-    }
-
     public int getAddRowCounter() {
         return addRowCounter;
-    }
-
-    public void setAddRowCounter(int addRowCounter) {
-        this.addRowCounter = addRowCounter;
     }
 
     @Override

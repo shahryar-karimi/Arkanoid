@@ -39,7 +39,7 @@ public class Load {
                 if (line.equals("{")) {
                     Player player = loadPlayer(scanner);
                     manager.addPlayer(player);
-                    player.setPausesGames(getPausedGames(scanner, manager, player));
+                    player.setPausesGames(getPausedGames(scanner, manager));
                 }
             }
         } catch (Exception e) {
@@ -52,20 +52,20 @@ public class Load {
     private static Player loadPlayer(Scanner scanner) {
         String userName = getInformation(scanner);
         String password = getInformation(scanner);
-        Score score = getScore(scanner);
         ArrayList<Score> scores = getScores(scanner);
         Player player = new Player();
-        return player.setTokenScores(scores).setPassword(password).setUserName(userName).setScore(score);
+        return player.setTokenScores(scores).setPassword(password).setUserName(userName);
     }
 
     private static Score getScore(Scanner scanner) {
         scanner.nextLine();
-        int score = getInt(2, scanner);
-        int heal = getInt(2, scanner);
+        int score = getInt(5, scanner);
+        int heal = getInt(5, scanner);
+        scanner.nextLine();
         return new Score(0, 0, GamePanel.getPanelWidth(), GamePanel.getPanelHeight(), score, heal);
     }
 
-    private static HashMap<String, MainFrame> getPausedGames(Scanner scanner, Manager manager, Player player) {
+    private static HashMap<String, MainFrame> getPausedGames(Scanner scanner, Manager manager) {
         scanner.nextLine();
         HashMap<String, MainFrame> pausedGames = new HashMap<>();
         String line;
@@ -74,15 +74,15 @@ public class Load {
             line = skipSpace(1, scanner.nextLine());
             if (line.equals("]")) break;
             name = skipSpace(1, line).split(" = ")[0];
-            pausedGames.put(name, loadMainFrame(scanner, manager, player));
+            pausedGames.put(name, loadMainFrame(scanner, manager));
         }
         scanner.nextLine();
         return pausedGames;
     }
 
-    private static MainFrame loadMainFrame(Scanner scanner, Manager manager, Player player) {
+    private static MainFrame loadMainFrame(Scanner scanner, Manager manager) {
         int timeLoop = getInt(3, scanner);
-        GamePanel gamePanel = getGamePanel(scanner, manager, player);
+        GamePanel gamePanel = getGamePanel(scanner, manager);
         ButtonPanel buttonPanel = getButtonPanel(scanner, manager);
         int winkCounter = getInt(3, scanner);
         int addRowCounter = getInt(3, scanner);
@@ -97,16 +97,17 @@ public class Load {
         return new ButtonPanel(userName, manager);
     }
 
-    private static GamePanel getGamePanel(Scanner scanner, Manager manager, Player player) {
+    private static GamePanel getGamePanel(Scanner scanner, Manager manager) {
         scanner.nextLine();
         Paddle paddle = loadPaddle(scanner);
+        Score score = getScore(scanner);
         ArrayList<Ball> balls = loadBalls(scanner);
         ArrayList<Cell> cells = loadCells(scanner);
         ArrayList<Prize> prizes = loadPrizes(scanner);
         ArrayList<Prize> tokenPrize = loadPrizes(scanner);
         String userName = getString(4, scanner);
         scanner.nextLine();
-        return new GamePanel(paddle, balls, cells, prizes, tokenPrize, userName, manager, player.getScore());
+        return new GamePanel(paddle, balls, cells, prizes, tokenPrize, userName, manager, score);
     }
 
     private static ArrayList<Prize> loadPrizes(Scanner scanner) {
@@ -213,8 +214,9 @@ public class Load {
             int xVelocity = getInt(6, scanner);
             int yVelocity = getInt(6, scanner);
             boolean isFire = getBoolean(6, scanner);
-            double velocityRatio = getDouble(6, scanner);
-            balls.add(new Ball(x, y, width, height, xVelocity, yVelocity, isFire, velocityRatio));
+            int fastCounter = getInt(6, scanner);
+            int slowCounter = getInt(6, scanner);
+            balls.add(new Ball(x, y, width, height, xVelocity, yVelocity, isFire, fastCounter, slowCounter));
             scanner.nextLine();
         }
         return balls;
@@ -228,8 +230,10 @@ public class Load {
         int height = getInt(5, scanner);
         int xVelocity = getInt(5, scanner);
         boolean isNormal = getBoolean(5, scanner);
+        int bigCounter = getInt(5, scanner);
+        int smallCounter = getInt(5, scanner);
         scanner.nextLine();
-        return new Paddle(x, y, width, height, xVelocity, isNormal);
+        return new Paddle(x, y, width, height, xVelocity, isNormal, bigCounter, smallCounter);
     }
 
     private static String getInformation(Scanner scanner) {

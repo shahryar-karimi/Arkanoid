@@ -19,14 +19,15 @@ public class SlowBall extends BallPrize {
     @Override
     public void offPrize(ArrayList<Ball> balls) {
         for (Ball ball : balls) {
-            ball.setVelocityRatio(ball.getVelocityRatio() * 2);
+            if (ball.getSlowCounter() > 0)
+                ball.setSlowCounter(ball.getSlowCounter() - 1);
         }
     }
 
     @Override
     public void onPrize(ArrayList<Ball> balls) {
         for (Ball ball : balls) {
-            ball.setVelocityRatio(ball.getVelocityRatio() / 2);
+            ball.setSlowCounter(ball.getSlowCounter() + 1);
         }
     }
 

@@ -1,7 +1,6 @@
 package panels.mainFramePanels;
 
 import logic.Manager;
-import logic.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,21 +18,20 @@ public class ButtonPanel extends JPanel {
     private JButton back;
     private JButton savePosition;
     private JButton exit;
-    private Manager manager;
-    private String userName;
-    private Player player;
+    private final Manager manager;
+    private final String userName;
 
     public ButtonPanel(String userName, Manager manager) {
-        this.player = manager.search(userName);
+        this.userName = userName;
         this.manager = manager;
         this.setBorder(null);
         this.setPreferredSize(SCREEN_SIZE);
         this.setBackground(Color.BLUE);
         this.setLayout(null);
-        init(player);
+        init();
     }
 
-    private void init(Player player) {
+    private void init() {
         power = new JButton("Play");
         power.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         power.setFocusable(false);
@@ -41,7 +39,7 @@ public class ButtonPanel extends JPanel {
         scoreBoardB = new JButton("Score Board");
         scoreBoardB.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 3 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         scoreBoardB.setFocusable(false);
-        scoreBoardB.addActionListener(e -> manager.scoreBoardIn(player.getUserName()));
+        scoreBoardB.addActionListener(e -> manager.scoreBoardIn(userName));
 
         back = new JButton("Back");
         back.setBounds((PANEL_WIDTH - BUTTON_WIDTH) / 2, PANEL_HEIGHT - 5 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -98,16 +96,8 @@ public class ButtonPanel extends JPanel {
         return exit;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getUserName() {
         return userName;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 
     @Override
