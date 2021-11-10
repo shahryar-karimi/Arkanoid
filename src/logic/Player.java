@@ -9,16 +9,14 @@ import java.util.HashMap;
 public class Player {
     private String userName;
     private String password;
-//    private Score score;
     private ArrayList<Score> tokenScores;
     private HashMap<String, MainFrame> pausesGames;
 
-    public Player(String userName, String password, int PANEL_WIDTH, int PANEL_HEIGHT) {
+    public Player(String userName, String password) {
         this.userName = userName;
         this.password = password;
         this.tokenScores = new ArrayList<>();
         this.pausesGames = new HashMap<>();
-//        this.score = new Score(0, 0, PANEL_WIDTH, PANEL_HEIGHT, 0);
     }
 
     public Player() {}

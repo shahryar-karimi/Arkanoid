@@ -6,9 +6,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class Manager {
-    private static final int PANEL_WIDTH = 509;
-    private static final int PANEL_HEIGHT = 509;
-
     private ArrayList<Player> players;
 
     private MainFrame mainFrame;
@@ -28,7 +25,7 @@ public class Manager {
     }
 
     public void createAccount(String userName, String password) {
-        players.add(new Player(userName, password, PANEL_WIDTH, PANEL_HEIGHT));
+        players.add(new Player(userName, password));
     }
 
     public Player search(String userName) {
