@@ -34,7 +34,7 @@ public class RandomPrize extends Prize {
     }
 
     private void initPrize() {
-        int i = random.nextInt(7);
+        int i = random.nextInt(8);
         switch (i) {
             case 0 -> prize = new FastBall(x, y, width, height);
             case 1 -> prize = new FireBall(x, y, width, height);
@@ -43,6 +43,7 @@ public class RandomPrize extends Prize {
             case 4 -> prize = new BigPaddle(x, y, width, height);
             case 5 -> prize = new ConfusePaddle(x, y, width, height);
             case 6 -> prize = new SmallPaddle(x, y, width, height);
+            case 7 -> prize = new HealthPrize(x, y, width, height);
         }
     }
 

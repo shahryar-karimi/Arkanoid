@@ -4,6 +4,7 @@ import logic.Manager;
 import logic.Player;
 import models.*;
 import models.cells.*;
+import models.prizes.HealthPrize;
 import models.prizes.Prize;
 import models.prizes.RandomPrize;
 import models.prizes.ballPrizes.FastBall;
@@ -124,7 +125,7 @@ public class GamePanel extends JPanel {
 
     private Prize getPrize(int x, int y, int i) {
         Prize prize;
-        switch (i % 8) {
+        switch (i % 9) {
             case 0 -> prize = new FastBall(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
             case 1 -> prize = new FireBall(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
             case 2 -> prize = new MultiBall(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
@@ -132,6 +133,7 @@ public class GamePanel extends JPanel {
             case 4 -> prize = new BigPaddle(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
             case 5 -> prize = new ConfusePaddle(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
             case 6 -> prize = new SmallPaddle(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
+            case 7 -> prize = new HealthPrize(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
             default -> prize = new RandomPrize(x, y, PRIZE_DIAMETER, PRIZE_DIAMETER);
         }
         return prize;
@@ -150,7 +152,6 @@ public class GamePanel extends JPanel {
 
     public void draw(Graphics g) {
         paddle.draw(g);
-//        player.getScore().draw(g);
         score.draw(g);
         cellDraw(g);
         prizeDraw(g);
@@ -194,7 +195,6 @@ public class GamePanel extends JPanel {
                         if (cell instanceof PrizeCell) {
                             prizes.add(((PrizeCell) cell).getPrize());
                         }
-//                        player.getScore().setScore(player.getScore().getScore() + cell.getScore());
                         score.setScore(score.getScore() + cell.getScore());
                         cells.remove(i);
                         i--;
@@ -212,7 +212,6 @@ public class GamePanel extends JPanel {
                 balls.remove(ball);
                 j--;
                 if (balls.size() == 0) {
-//                    player.getScore().loseHeal();
                     score.loseHeal();
                     if (score.getHeal() > 0) {
                         newPaddle();
@@ -249,7 +248,7 @@ public class GamePanel extends JPanel {
     }
 
     private Prize findPrize(Prize prize) {
-        Prize p;
+        Prize p = null;
         if (prize instanceof FastBall) {
             p = hasFastBall();
         } else if (prize instanceof FireBall) {
@@ -264,7 +263,7 @@ public class GamePanel extends JPanel {
             p = hasConfusePaddle();
         } else if (prize instanceof SmallPaddle) {
             p = hasSmallPaddle();
-        } else {
+        } else if (prize instanceof RandomPrize){
             p = findPrize(((RandomPrize) prize).getPrize());
         }
         return p;

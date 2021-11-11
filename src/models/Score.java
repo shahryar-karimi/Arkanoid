@@ -30,16 +30,16 @@ public class Score extends Rectangle {
         g.drawLine(0, 9 * height / 10, width, 9 * height / 10);
     }
 
-    public void setHeal(int playerHeal) {
-        this.heal = playerHeal;
-    }
-
     public int getHeal() {
         return heal;
     }
 
     public void loseHeal() {
         if (heal > 0) heal--;
+    }
+
+    public void increaseHeal() {
+        heal++;
     }
 
     @Override

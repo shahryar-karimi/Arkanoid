@@ -1,0 +1,932 @@
+{
+    userName = abbas
+    password = 12345
+    token scores = [
+        6475
+        6500
+    ]
+    paused game = [
+        1 = [
+            TimeLoop = 37
+            Game panel = [
+                Paddle = [
+                    x = 348
+                    y = 499
+                    width = 64
+                    height = 10
+                    xVelocity = 0
+                    isNormal = true
+                    bigCounter = 0
+                    smallCounter = 0
+                ]
+                Score = [
+                    score = 1045
+                    heal = 2
+                ]
+                Balls = [
+                    [
+                        x = 451
+                        y = 269
+                        width = 10
+                        height = 10
+                        xVelocity = 1
+                        yVelocity = -4
+                        isFire = false
+                        fastCounter = 0
+                        slowCounter = 0
+                    ]
+                ]
+                Cells = [
+                    WoodenCell = [
+                        x = 19
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FastBall = [
+                            x = 169
+                            y = 80
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FastBall = [
+                            x = 319
+                            y = 80
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    InvisibleCell = [
+                        x = 469
+                        y = 80
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FireBall = [
+                            x = 169
+                            y = 100
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FireBall = [
+                            x = 319
+                            y = 100
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 100
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 69
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 1
+                        MultiBall = [
+                            x = 169
+                            y = 120
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 1
+                        MultiBall = [
+                            x = 319
+                            y = 120
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 120
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    GlassyCell = [
+                        x = 119
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 1
+                        SlowBall = [
+                            x = 169
+                            y = 140
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 1
+                        SlowBall = [
+                            x = 319
+                            y = 140
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 140
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 1
+                        BigPaddle = [
+                            x = 169
+                            y = 160
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 1
+                        BigPaddle = [
+                            x = 319
+                            y = 160
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 160
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 180
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 180
+                        width = 30
+                        height = 20
+                        heal = 1
+                        ConfusePaddle = [
+                            x = 169
+                            y = 180
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 180
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 180
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 180
+                        width = 30
+                        height = 20
+                        heal = 1
+                        ConfusePaddle = [
+                            x = 319
+                            y = 180
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 180
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 69
+                        y = 200
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 200
+                        width = 30
+                        height = 20
+                        heal = 1
+                        SmallPaddle = [
+                            x = 169
+                            y = 200
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 200
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 200
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 200
+                        width = 30
+                        height = 20
+                        heal = 1
+                        SmallPaddle = [
+                            x = 319
+                            y = 200
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 200
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    GlassyCell = [
+                        x = 119
+                        y = 220
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 220
+                        width = 30
+                        height = 20
+                        heal = 1
+                        RandomPrize = [
+                            x = 169
+                            y = 220
+                            width = 10
+                            height = 10
+                            time = 20000
+                            SlowBall = [
+                                x = 169
+                                y = 160
+                                width = 10
+                                height = 10
+                                time = 20000
+                            ]
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 220
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 220
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 220
+                        width = 30
+                        height = 20
+                        heal = 1
+                        RandomPrize = [
+                            x = 319
+                            y = 220
+                            width = 10
+                            height = 10
+                            time = 20000
+                            SmallPaddle = [
+                                x = 319
+                                y = 160
+                                width = 10
+                                height = 10
+                                time = 20000
+                            ]
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 220
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    WinkCell = [
+                        x = 69
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    GlassyCell = [
+                        x = 119
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FastBall = [
+                            x = 169
+                            y = 240
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 240
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FastBall = [
+                            x = 319
+                            y = 240
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WinkCell = [
+                        x = 69
+                        y = 260
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    GlassyCell = [
+                        x = 119
+                        y = 260
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 260
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FireBall = [
+                            x = 169
+                            y = 260
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 260
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 260
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 1
+                        BigPaddle = [
+                            x = 169
+                            y = 60
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 1
+                        BigPaddle = [
+                            x = 319
+                            y = 60
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = true
+                    ]
+                    InvisibleCell = [
+                        x = 469
+                        y = 60
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FastBall = [
+                            x = 169
+                            y = 40
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                        FastBall = [
+                            x = 319
+                            y = 40
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = false
+                    ]
+                    InvisibleCell = [
+                        x = 469
+                        y = 40
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    WoodenCell = [
+                        x = 19
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 69
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = true
+                    ]
+                    GlassyCell = [
+                        x = 119
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 169
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                        MultiBall = [
+                            x = 169
+                            y = 20
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    InvisibleCell = [
+                        x = 219
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    GlassyCell = [
+                        x = 269
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                    PrizeCell = [
+                        x = 319
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                        MultiBall = [
+                            x = 319
+                            y = 20
+                            width = 10
+                            height = 10
+                            time = 20000
+                        ]
+                    ]
+                    WoodenCell = [
+                        x = 369
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 2
+                    ]
+                    WinkCell = [
+                        x = 419
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                        isWink = true
+                    ]
+                    InvisibleCell = [
+                        x = 469
+                        y = 20
+                        width = 30
+                        height = 20
+                        heal = 1
+                    ]
+                ]
+                Prizes = [
+                ]
+                TokenPrizes = [
+                ]
+                UserName = abbas
+            ]
+            Button panel = [
+                UserName = abbas
+            ]
+            WinkCounter = 2
+            AddRowCounter = 62
+        ]
+    ]
+}
+{
+    userName = amin
+    password = 12345
+    token scores = [
+        3010
+        4660
+    ]
+    paused game = [
+    ]
+}
+{
+    userName = shahryar
+    password = 12345
+    token scores = [
+    ]
+    paused game = [
+    ]
+}
